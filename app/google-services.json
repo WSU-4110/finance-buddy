@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "684207012830",
+    "firebase_url": "https://finance-buddy-401ee-default-rtdb.firebaseio.com",
+    "project_id": "finance-buddy-401ee",
+    "storage_bucket": "finance-buddy-401ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684207012830:android:48d463d3ccd0445d743b4f",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684207012830-o7t87bonp07teo11erri1vaddtib2jf7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBcdQTQOozgwtxd0CRlNryP4eGhVW17kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684207012830-o7t87bonp07teo11erri1vaddtib2jf7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
