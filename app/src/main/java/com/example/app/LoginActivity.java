@@ -119,11 +119,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     if(user.isEmailVerified()){
                         //redirect to home screen here.
-                        startActivity(new Intent(LoginActivity.this, HomeViewModel.class));
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
                     else{
                         user.sendEmailVerification();
                         Toast.makeText(LoginActivity.this, "Please verify your email to access your account", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 }
                 else{
