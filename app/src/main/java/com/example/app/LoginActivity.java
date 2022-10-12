@@ -20,6 +20,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     //private ActivityMainBinding binding;
@@ -29,6 +35,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+    private DatabaseReference mDatabase;
+    private boolean bankSetup;
+// ...
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(this);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+
+
         //binding = ActivityMainBinding.inflate(getLayoutInflater());
         //setContentView(binding.getRoot());
 
@@ -64,6 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         //NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -115,11 +130,30 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()){
+
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String userID = user.getUid();
+                    mDatabase.child(userID).child("bankSetup").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            //bankSetup = (boolean) snapshot.getValue();
+                            bankSetup = false;
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            System.out.println(error.toString());
+                        }
+                    });
 
                     if(user.isEmailVerified()){
-                        //redirect to home screen here.
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        //redirect to home screen or bank setup here.
+
+                        if(!bankSetup){
+                            startActivity(new Intent(LoginActivity.this,SetupBank.class));
+                        }
+                        else{
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        }
                     }
                     else{
                         user.sendEmailVerification();

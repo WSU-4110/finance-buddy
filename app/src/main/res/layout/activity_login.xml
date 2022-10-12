@@ -23,7 +23,7 @@
         />
 
     <TextView
-        android:id="@+id/bannerDescription"
+        android:id="@+id/initialText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save your money!"
@@ -46,7 +46,7 @@
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bannerDescription"
+        app:layout_constraintTop_toBottomOf="@+id/initialText"
         />
 
     <EditText

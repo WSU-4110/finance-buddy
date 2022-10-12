@@ -37,6 +37,9 @@
             android:name=".MainActivity">
         </activity>
         <activity
+            android:name=".SetupBank">
+        </activity>
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
 
