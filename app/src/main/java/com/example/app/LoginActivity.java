@@ -137,6 +137,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             //bankSetup = (boolean) snapshot.getValue();
+                            //^^^Once we setup a field for bankSetup on firebase we can uncomment this ^^^
                             bankSetup = false;
                         }
                         @Override
