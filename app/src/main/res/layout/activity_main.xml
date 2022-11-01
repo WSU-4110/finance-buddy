@@ -32,7 +32,7 @@
         app:navGraph="@navigation/mobile_navigation" />
     <TextView
         android:id="@+id/public_token_result"
-        style="@style/PlaidText.H4.Semibold"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start|center"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/result"
-        style="@style/PlaidText.B1.Regular"
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
