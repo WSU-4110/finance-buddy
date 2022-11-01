@@ -12,17 +12,24 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SetupBank extends AppCompatActivity implements View.OnClickListener {
 
     private Button later;
+    private Button start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bank_setup);
         later = findViewById(R.id.cancel);
         later.setOnClickListener(this);
+        start = findViewById(R.id.bankStart);
+        start.setOnClickListener(this);
+
 
     }
 
     @Override
     public void onClick(View view) {
-        startActivity(new Intent(SetupBank.this, MainActivity.class));
+        if(view == later)
+            startActivity(new Intent(SetupBank.this, MainActivity.class));
+        else
+            startActivity(new Intent(SetupBank.this, MainActivityJava.class));
     }
 }
