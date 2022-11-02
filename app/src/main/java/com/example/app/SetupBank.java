@@ -12,16 +12,25 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SetupBank extends AppCompatActivity implements View.OnClickListener {
 
     private Button later;
+<<<<<<< Updated upstream
     private Button start;
+=======
+    private Button setup;
+>>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bank_setup);
         later = findViewById(R.id.cancel);
         later.setOnClickListener(this);
+<<<<<<< Updated upstream
         start = findViewById(R.id.bankStart);
         start.setOnClickListener(this);
 
+=======
+        setup = findViewById(R.id.bankStart);
+        setup.setOnClickListener(this);
+>>>>>>> Stashed changes
 
     }
 
@@ -30,6 +39,10 @@ public class SetupBank extends AppCompatActivity implements View.OnClickListener
         if(view == later)
             startActivity(new Intent(SetupBank.this, MainActivity.class));
         else
+<<<<<<< Updated upstream
             startActivity(new Intent(SetupBank.this, MainActivityJava.class));
+=======
+            startActivity(new Intent(SetupBank.this , MainActivityJava.class));
+>>>>>>> Stashed changes
     }
 }

@@ -41,5 +41,8 @@
     <string name="title_activity_main_activity_result_contract">Link demo (startActivityForResult)</string>
     <string name="open_activity_result_java">Open startActivityForResult demo (Java)</string>
     <string name="title_activity_main_activity_result_contract_java">Link demo (startActivityForResult Java)</string>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 </resources>

@@ -6,8 +6,11 @@ package com.example.app;
 
 import android.app.Application;
 
+<<<<<<< Updated upstream
 import com.plaid.link.Plaid;
 
+=======
+>>>>>>> Stashed changes
 @SuppressWarnings("unused")
 public class LinkSampleApplicationJava extends Application {
 
