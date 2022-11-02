@@ -13,7 +13,7 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivityJava"
+            android:name=".TokenHandler"
             android:exported="true"
             android:label="@string/title_activity_main_java"
             android:theme="@style/Theme.AppCompat" />
@@ -21,7 +21,7 @@
 
 
         <activity
-            android:name=".MainActivityStartActivityForResultJava"
+            android:name=".TokenHandlerResult"
             android:exported="true"
             android:label="@string/title_activity_main_activity_result_contract_java"
             android:theme="@style/Theme.AppCompat" />
