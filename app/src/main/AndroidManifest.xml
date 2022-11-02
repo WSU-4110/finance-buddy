@@ -52,12 +52,7 @@
         <activity
             android:name=".SetupBank">
         </activity>
-        <activity
-            android:name=".MainActivityJava">
-        </activity>
-        <activity
-            android:name=".MainActivityStartActivityForResultJava">
-        </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">

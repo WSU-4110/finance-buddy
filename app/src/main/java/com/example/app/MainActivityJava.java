@@ -4,30 +4,23 @@
 
 package com.example.app;
 
-<<<<<<< Updated upstream
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Debug;
-=======
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
->>>>>>> Stashed changes
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< Updated upstream
-import android.widget.TextView;
-import android.widget.Toast;
-=======
+
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
->>>>>>> Stashed changes
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,16 +31,7 @@ import com.plaid.link.configuration.LinkTokenConfiguration;
 import com.plaid.link.result.LinkExit;
 import com.plaid.link.result.LinkSuccess;
 
-<<<<<<< Updated upstream
-import kotlin.Unit;
 
-
-
-public class MainActivityJava extends AppCompatActivity {
-
-  private TextView result;
-  private TextView tokenResult;
-=======
 import com.plaid.linksample.network.LinkTokenRequester;
 import kotlin.Unit;
 
@@ -57,7 +41,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
   private TextView result;
   private TextView tokenResult;
   private TextView link;
->>>>>>> Stashed changes
+
 
   private ActivityResultLauncher<LinkTokenConfiguration> linkAccountToPlaid = registerForActivityResult(
       new OpenPlaidLink(),
@@ -72,10 +56,9 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
   private void showSuccess(LinkSuccess success) {
     tokenResult.setText(getString(R.string.public_token_result, success.getPublicToken()));
     result.setText(getString(R.string.content_success));
-<<<<<<< Updated upstream
-=======
+
     Log.e("Public token",tokenResult.getText().toString());
->>>>>>> Stashed changes
+
   }
 
   private void showFailure(LinkExit exit) {
@@ -92,16 +75,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
     }
   }
 
-<<<<<<< Updated upstream
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    result = findViewById(R.id.result);
-    tokenResult = findViewById(R.id.public_token_result);
-    System.out.print("Plaid Class Started");
-    openLink();
-=======
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +92,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
     link = findViewById(R.id.open_link);
     link.setOnClickListener(this);
 
->>>>>>> Stashed changes
+
   }
 
   /**
@@ -136,16 +110,11 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
    * <a href="https://plaid.com/docs/link/android/#parameter-reference">parameter reference</>
    */
   private void openLink() {
-<<<<<<< Updated upstream
 
-    TokenRequester tr = new TokenRequester();
-    tr.getToken().subscribe(this::onLinkTokenSuccess, this::onLinkTokenError);
-
-=======
     Log.e("tag","openlink called");
     LinkTokenRequester.INSTANCE.getToken()
         .subscribe(this::onLinkTokenSuccess, this::onLinkTokenError);
->>>>>>> Stashed changes
+
   }
 
   private void onLinkTokenSuccess(String token) {
@@ -169,21 +138,15 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
-<<<<<<< Updated upstream
-    //inflater.inflate(R.menu.menu_java, menu);
-=======
+
     inflater.inflate(R.menu.menu_java, menu);
->>>>>>> Stashed changes
+
     return true;
   }
 
   @SuppressWarnings("SwitchStatementWithTooFewBranches")
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-<<<<<<< Updated upstream
-        return super.onOptionsItemSelected(item);
-
-=======
     switch (item.getItemId()) {
       case R.id.show_kotlin:
         Intent intent = new Intent(this, MainActivity.class);
@@ -200,6 +163,6 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
 
       setOptionalEventListener();
       openLink();
->>>>>>> Stashed changes
+
   }
 }
