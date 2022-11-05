@@ -34,7 +34,7 @@ public object LinkTokenRequester {
   */
   //Comment out the above and uncomment the below to use a curled Link Token
   val token
-    get() = Single.just("link-sandbox-24d897f5-6799-4f19-b293-e754bb4ee139")
+    get() = Single.just("link-sandbox-82fc77b9-ebdb-425c-b13a-f31912390da1")
 
 }
 
