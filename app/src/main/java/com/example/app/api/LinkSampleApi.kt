@@ -1,4 +1,4 @@
-package com.example.app
+package com.example.app.api
 
 import com.google.gson.annotations.SerializedName
 import io.reactivex.rxjava3.core.Single

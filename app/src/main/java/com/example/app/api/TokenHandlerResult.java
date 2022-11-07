@@ -2,94 +2,82 @@
  * Copyright (c) 2020 Plaid Technologies, Inc. <support@plaid.com>
  */
 
-package com.example.app;
+package com.example.app.api;
 
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.plaid.link.OpenPlaidLink;
+import com.example.app.MainActivity;
+import com.example.app.R;
 import com.plaid.link.Plaid;
 import com.plaid.link.configuration.LinkTokenConfiguration;
-import com.plaid.link.result.LinkExit;
-import com.plaid.link.result.LinkSuccess;
+import com.plaid.link.result.LinkResultHandler;
 
 
 //import com.plaid.linksample.network.LinkTokenRequester;
 import kotlin.Unit;
 
-
-public class TokenHandler extends AppCompatActivity implements View.OnClickListener{
+/**
+ * Old approach to opening Plaid Link, we recommend switching over to the
+ * OpenPlaidLink ActivityResultContract instead.
+ */
+public class TokenHandlerResult extends AppCompatActivity {
 
   private TextView result;
   private TextView tokenResult;
-  private TextView link;
 
-
-  private ActivityResultLauncher<LinkTokenConfiguration> linkAccountToPlaid = registerForActivityResult(
-      new OpenPlaidLink(),
-      result -> {
-        if (result instanceof LinkSuccess) {
-          showSuccess((LinkSuccess) result);
+  private LinkResultHandler myPlaidResultHandler = new LinkResultHandler(
+      linkSuccess -> {
+        tokenResult.setText(getString(
+            R.string.public_token_result,
+            linkSuccess.getPublicToken()));
+        result.setText(getString(
+            R.string.content_success));
+        return Unit.INSTANCE;
+      },
+      linkExit -> {
+        tokenResult.setText("");
+        if (linkExit.getError() != null) {
+          result.setText(getString(
+              R.string.content_exit,
+              linkExit.getError().getDisplayMessage(),
+              linkExit.getError().getErrorCode()));
         } else {
-          showFailure((LinkExit) result);
+          result.setText(getString(
+              R.string.content_cancel,
+              linkExit.getMetadata().getStatus() != null ? linkExit.getMetadata()
+                  .getStatus()
+                  .getJsonValue() : "unknown"));
         }
-      });
-
-  private void showSuccess(LinkSuccess success) {
-    tokenResult.setText(getString(R.string.public_token_result, success.getPublicToken()));
-    result.setText(getString(R.string.content_success));
-
-    Log.e("Public token",tokenResult.getText().toString());
-
-  }
-
-  private void showFailure(LinkExit exit) {
-    tokenResult.setText("");
-    if (exit.getError() != null) {
-      result.setText(getString(
-          R.string.content_exit,
-          exit.getError().getDisplayMessage(),
-          exit.getError().getErrorCode()));
-    } else {
-      result.setText(getString(
-          R.string.content_cancel,
-          exit.getMetadata().getStatus() != null ? exit.getMetadata().getStatus().getJsonValue() : "unknown"));
-    }
-  }
-
-
+        return Unit.INSTANCE;
+      }
+  );
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    try{
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.plaid_setup);
-    }catch(Exception e){
-      Log.e( "onCreateView", e.getMessage());
-    }
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.plaid_setup);
 
     result = findViewById(R.id.result);
     tokenResult = findViewById(R.id.public_token_result);
 
-    link = findViewById(R.id.open_link);
-    link.setOnClickListener(this);
-
-
+    View button = findViewById(R.id.open_link);
+    button.setOnClickListener(view -> {
+      setOptionalEventListener();
+      openLink();
+    });
   }
 
   /**
@@ -108,17 +96,18 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
    */
   private void openLink() {
 
-    Log.e("tag","openlink called");
     LinkTokenRequester.INSTANCE.getToken()
         .subscribe(this::onLinkTokenSuccess, this::onLinkTokenError);
 
   }
 
   private void onLinkTokenSuccess(String token) {
-    LinkTokenConfiguration configuration = new LinkTokenConfiguration.Builder()
-        .token(token)
-        .build();
-    linkAccountToPlaid.launch(configuration);
+    Plaid.create(
+        getApplication(),
+        new LinkTokenConfiguration.Builder()
+            .token(token)
+            .build())
+        .open(this);
   }
 
   private void onLinkTokenError(Throwable error) {
@@ -133,17 +122,25 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
   }
 
   @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if (!myPlaidResultHandler.onActivityResult(requestCode, resultCode, data)) {
+      Log.i(TokenHandler.class.getSimpleName(), "Not handled");
+    }
+  }
+
+  @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
 
     inflater.inflate(R.menu.menu_java, menu);
-
     return true;
   }
 
   @SuppressWarnings("SwitchStatementWithTooFewBranches")
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
     switch (item.getItemId()) {
       case R.id.show_kotlin:
         Intent intent = new Intent(this, MainActivity.class);
@@ -153,13 +150,6 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
       default:
         return super.onOptionsItemSelected(item);
     }
-  }
-
-  @Override
-  public void onClick(View view) {
-
-      setOptionalEventListener();
-      openLink();
 
   }
 }

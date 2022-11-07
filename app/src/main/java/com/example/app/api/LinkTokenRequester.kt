@@ -1,4 +1,4 @@
-package com.example.app
+package com.example.app.api
 
 import io.reactivex.rxjava3.core.Single
 import okhttp3.OkHttpClient
