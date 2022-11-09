@@ -39,6 +39,7 @@ dependencies {
 
 
     implementation "com.plaid.link:sdk-core:3.10.1"
+    implementation 'com.plaid:plaid-java:9.0.0'
     implementation "io.reactivex.rxjava3:rxandroid:3.0.0"
     implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
