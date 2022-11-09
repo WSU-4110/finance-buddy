@@ -29,6 +29,27 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     //private ActivityMainBinding binding;
+
+    //Using Singleton design pattern for login activity, since only one instance of this class
+    //will ever be used at any one time.  This is double checked locked, which insures thread safety
+    //and reduces the overhead of calling the synchronized method.
+    private static volatile LoginActivity login = null;
+
+    private LoginActivity() {}
+
+    public static LoginActivity getInstance()
+    {
+        if (login == null)
+        {
+            synchronized (LoginActivity.class)
+            {
+                if (login == null)
+                    login = new LoginActivity();
+            }
+        }
+        return login;
+    }
+
     private TextView register, forgotPassword;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
@@ -43,6 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getInstance();
         setContentView(R.layout.activity_login);
 
         register = (TextView) findViewById(R.id.register);
