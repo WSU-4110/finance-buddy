@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class GenerateToken {
+    private Response<LinkTokenCreateResponse> response = null;
+    boolean b = false;
 
     public PlaidApi createClient() throws ExceptionInInitializerError{
         PlaidApi plaidClient = null;
@@ -24,8 +26,8 @@ public class GenerateToken {
 
 
             HashMap<String, String> apiKeys = new HashMap<String, String>();
-            apiKeys.put("clientId", "plaidClientId");
-            apiKeys.put("secret", "plaidSecret");
+            apiKeys.put("clientId", "633f656d3246d000121548ae");
+            apiKeys.put("secret", "94438bcdf84b7aad28e91f77f9f353");
             apiKeys.put("plaidVersion", "2020-09-14");
             ApiClient apiClient = new ApiClient(apiKeys);
             apiClient.setPlaidAdapter(ApiClient.Sandbox);
@@ -54,8 +56,6 @@ public class GenerateToken {
                 .products(Arrays.asList(Products.AUTH))
                 .countryCodes(Arrays.asList(CountryCode.US))
                 .language("en")
-                .webhook("https://example.com/webhook")
-                .linkCustomizationName("default")
                 .androidPackageName("com.example.app");
         try{
 
@@ -68,10 +68,13 @@ public class GenerateToken {
                 public void run() {
                     try  {
                         //Your code goes here
-                        Response<LinkTokenCreateResponse> response = createClient().linkTokenCreate(request).execute();
+                        response = createClient().linkTokenCreate(request).execute();
+                        Log.e("tessssttt", "hi");
+                        b = true;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
                 }
             });
 
@@ -84,8 +87,8 @@ public class GenerateToken {
         }
 
 
-
-        return linkToken;
+        while(!b){};
+        return response.body().getLinkToken();
     }
 
 
