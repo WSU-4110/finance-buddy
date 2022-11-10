@@ -1,5 +1,9 @@
 package com.example.app;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Statement {
     private double groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
     private String date;
@@ -28,6 +32,55 @@ public class Statement {
         this.subscriptions = subscriptions;
         this.other = other;
         this.date = date;
+    }
+
+    public Statement(String path){
+        try {
+            File Doc = new File(path);
+            Scanner scan = new Scanner(Doc);
+
+
+            //Skip irrelevant info
+            for(int i = 0; i < 6; i++){
+                scan.nextLine();
+            }
+            scan.next();
+            scan.next();
+
+            this.date = scan.next();
+
+            scan.next();
+            scan.next();
+            scan.next();
+            while (scan.next() != "TOTAL") {
+                switch (scan.next()) {
+                    case "GROCERIES":  this.groceries = Double.parseDouble(scan.next());
+                        break;
+                    case "RESTAURANTS":  this.restaurants = Double.parseDouble(scan.next());
+                        break;
+                    case "TRANSPORTATION":  this.transportation = Double.parseDouble(scan.next());
+                        break;
+                    case "ENTERTAINMENT":  this.entertainment = Double.parseDouble(scan.next());
+                        break;
+                    case "CLOTHING":  this.clothing = Double.parseDouble(scan.next());
+                        break;
+                    case "UTILITIES":  this.utilities = Double.parseDouble(scan.next());
+                        break;
+                    case "HOUSING":  this.housing = Double.parseDouble(scan.next());
+                        break;
+                    case "SUBSCRIPTIONS":  this.subscriptions = Double.parseDouble(scan.next());
+                        break;
+                    default: this.other = Double.parseDouble(scan.next());
+                        break;
+                }
+            }
+
+            scan.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public void setGroceries(double groceries){
