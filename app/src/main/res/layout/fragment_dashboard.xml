@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/banner2"
-        android:layout_width="408dp"
-        android:layout_height="101dp"
+        android:layout_width="355dp"
+        android:layout_height="163dp"
         android:fontFamily="sans-serif-black"
         android:text="Finance Buddy"
         android:textAlignment="center"
@@ -17,10 +17,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/spending"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
+        app:layout_constraintVertical_bias="0.66" />
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -64,7 +64,6 @@
         android:layout_width="251dp"
         android:layout_height="141dp"
         android:layout_marginBottom="32dp"
-        android:onClick="openFileDialog"
         android:text="Upload Statement"
         app:layout_constraintBottom_toTopOf="@+id/path"
         app:layout_constraintEnd_toEndOf="parent"
