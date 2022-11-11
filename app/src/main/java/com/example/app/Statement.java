@@ -2,11 +2,14 @@ package com.example.app;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
-public class Statement {
+public class Statement implements Subject{
     private double groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
     private String date;
+    ArrayList<Observer> observerList;
 
     public Statement() {
         groceries = 0;
@@ -80,6 +83,27 @@ public class Statement {
         catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void registerObserver(Observer o) {
+        observerList.add(o);
+    }
+
+    @Override
+    public void unregisterObserver(Observer o) {
+        observerList.remove(observerList.indexOf(o));
+    }
+
+    @Override
+    public void notifyObservers()
+    {
+        for (Iterator<Observer> it =
+             observerList.iterator(); it.hasNext();)
+        {
+            Observer o = it.next();
+            o.update(groceries,restaurants,transportation,entertainment,clothing,utilities,housing,subscriptions,other,date);
         }
     }
 
