@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,5 +30,32 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
+    <TextView
+        android:id="@+id/public_token_result"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center"
+        tools:text="public_token:\npublic-sandbox-12341234"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/result"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoLink="all"
+        android:gravity="start|center"
+        tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/open_link"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/open_link"
+        tools:ignore="MissingConstraints" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
