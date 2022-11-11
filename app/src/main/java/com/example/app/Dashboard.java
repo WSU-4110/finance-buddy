@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app.R;
+import com.example.app.Spending;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,8 +24,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Dashboard extends AppCompatActivity{
 
-    //private ActivityMainBinding binding;
-    private EditText editspending, editgoal;
+
+    double spending, goal;
+
+    EditText spendingInput;
+    EditText goalInput;
+
+    Button submitButton;
 
 
     @Override
@@ -30,15 +38,32 @@ public class Dashboard extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_dashboard);
 
-        editspending = (EditText) findViewById(R.id.spending);
-        editgoal = (EditText) findViewById(R.id.goal);
+        spendingInput = (EditText) findViewById(R.id.spendingInput);
+        goalInput = (EditText) findViewById(R.id.goalInput);
 
+        TextView displayTotalSpending = (TextView)findViewById(R.id.displayTotalSpending);
+        TextView displayCurrentGoal = (TextView)findViewById(R.id.displayCurrentGoal);
+
+        submitButton = (Button) findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spending = Double.valueOf(spendingInput.getText().toString());
+                goal = Double.valueOf(goalInput.getText().toString());
+
+                Spending newSpending = Spending.getSpending();
+
+                displayTotalSpending.setText(String.valueOf(newSpending.getTotalSpending()));
+                displayCurrentGoal.setText(String.valueOf(goal));
+
+
+
+            }
+        });
     }
 
-    private void setGoal() {
-        Float spending = Float.valueOf(editspending.getText().toString());
-        Float goal = Float.valueOf(editspending.getText().toString());
 
-    }
+
+
 
 }

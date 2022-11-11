@@ -28,4 +28,9 @@
         android:name="com.example.app.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/dashboard"
+        android:name="com.example.app.ui.dashboard.Dashboard"
+        android:label="spendgoaldashboard"
+        tools:layout="@layout/spendgoaldashboard" />
 </navigation>
