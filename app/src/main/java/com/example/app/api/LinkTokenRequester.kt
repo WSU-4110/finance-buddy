@@ -1,6 +1,5 @@
 package com.example.app.api
 
-import com.example.app.GenerateToken
 import io.reactivex.rxjava3.core.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -35,7 +34,7 @@ public object LinkTokenRequester {
   */
   //Comment out the above and uncomment the below to use a curled Link Token
   val genToken = GenerateToken().generate();
-  
+
   val token
     get() = Single.just(genToken)
 

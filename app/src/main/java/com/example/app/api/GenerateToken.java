@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.api;
 import android.util.Log;
 
 import com.plaid.client.ApiClient;
@@ -18,34 +18,32 @@ import java.util.HashMap;
 
 public class GenerateToken {
     private Response<LinkTokenCreateResponse> response = null;
-    boolean b = false;
+    private boolean b = false;
+    private final String clientId = "633f656d3246d000121548ae";
+    private final String secretSandbox = "94438bcdf84b7aad28e91f77f9f353";
 
     public PlaidApi createClient() throws ExceptionInInitializerError{
         PlaidApi plaidClient = null;
         try{
-
-
             HashMap<String, String> apiKeys = new HashMap<String, String>();
-            apiKeys.put("clientId", "633f656d3246d000121548ae");
-            apiKeys.put("secret", "94438bcdf84b7aad28e91f77f9f353");
+            apiKeys.put("clientId", clientId);
+            apiKeys.put("secret", secretSandbox);
             apiKeys.put("plaidVersion", "2020-09-14");
             ApiClient apiClient = new ApiClient(apiKeys);
             apiClient.setPlaidAdapter(ApiClient.Sandbox);
 
             plaidClient = apiClient.createService(PlaidApi.class);
-            Log.e("client", "client returned");
 
         }catch(ExceptionInInitializerError e){
-            Log.e("cleinterror", "errorrrrr");
+            Log.e("client-error", "Error creating client");
         }
         return plaidClient;
     }
 
-    String clientUserId = "633f656d3246d000121548ae";
     public String generate() throws IOException, ExceptionInInitializerError {
-        String linkToken = null;
+
         LinkTokenCreateRequestUser user = new LinkTokenCreateRequestUser()
-                .clientUserId(clientUserId)
+                .clientUserId(clientId)
                 .legalName("legal name")
                 .phoneNumber("4155558888")
                 .emailAddress("email@address.com");
@@ -58,40 +56,25 @@ public class GenerateToken {
                 .language("en")
                 .androidPackageName("com.example.app");
         try{
-
-            Log.e("tagg", "Try catch block");
-
-
             Thread thread = new Thread(new Runnable() {
-
                 @Override
                 public void run() {
-                    try  {
-                        //Your code goes here
+                    try{
                         response = createClient().linkTokenCreate(request).execute();
-                        Log.e("tessssttt", "hi");
                         b = true;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                 }
             });
-
             thread.start();
-
-
 
         }catch (ExceptionInInitializerError e){
             Log.e("tag response", e.getCause().toString());
         }
 
-
         while(!b){};
         return response.body().getLinkToken();
     }
-
-
-
 }
 
