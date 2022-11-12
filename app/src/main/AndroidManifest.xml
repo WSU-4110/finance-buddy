@@ -51,12 +51,9 @@
             </intent-filter>
 
         </activity>
-<<<<<<< HEAD
         <!-- push notifications service error on android name -->
-=======
 
     <!--push notifs-->
->>>>>>> origin
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
             android:exported="false">
@@ -64,10 +61,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-<<<<<<< HEAD
 
-=======
->>>>>>> origin
     </application>
 
 </manifest>
