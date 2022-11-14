@@ -1,5 +1,7 @@
 package com.example.app;
 
+import static com.example.app.R.id.etToken;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
