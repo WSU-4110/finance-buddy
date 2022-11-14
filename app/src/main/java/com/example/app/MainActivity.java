@@ -16,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+
 import com.example.app.databinding.ActivityMainBinding;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -54,5 +55,4 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
 }

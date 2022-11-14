@@ -13,6 +13,19 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
+            android:name=".api.TokenHandler"
+            android:exported="true"
+            android:label="@string/title_activity_main_java"
+            android:theme="@style/Theme.AppCompat" />
+
+
+
+        <activity
+            android:name=".api.TokenHandlerResult"
+            android:exported="true"
+            android:label="@string/title_activity_main_activity_result_contract_java"
+            android:theme="@style/Theme.AppCompat" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="false">
             <meta-data
@@ -39,6 +52,7 @@
         <activity
             android:name=".SetupBank">
         </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">

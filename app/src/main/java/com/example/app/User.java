@@ -1,8 +1,11 @@
 package com.example.app;
+import java.util.*;
+import java.io.*;
 
 public class User {
 
     public String fullName, age, email;
+    public Stack<Statement> statements;
     public boolean bankSetup;
     public User() {
     }
@@ -12,6 +15,7 @@ public class User {
         this.age = age;
         this.email = email;
         this.bankSetup = bankSetup;
+        this.statements = new Stack<>();
     }
 
 }
