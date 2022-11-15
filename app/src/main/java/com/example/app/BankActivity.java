@@ -3,7 +3,7 @@ package com.example.app;
 import java.util.ArrayList;
 
 public class BankActivity {
-    private ArrayList<Transactions> activity;
+    private ArrayList<Transactions> activity = new ArrayList<Transactions>();
     private int size;
     private Calculate calc;
     private User user;
@@ -24,8 +24,21 @@ public class BankActivity {
         activity.add(tran);
         size++;
     }
-    public Transactions getTransaction(Transactions tran){
-        return tran;
+    public Transactions getTransaction(int index){
+        if(index < 0 || index > 1000){
+            return null;
+        }
+        else{
+            return activity.get(index);
+        }
+    }
+    public String getAllTransactionsString(){
+        String s  = "";
+        for (int i = 0; i < size; i++){
+            s.concat(getTransaction(i).toStringT());
+            s.concat("  ");
+        }
+        return s;
     }
     public ArrayList<Transactions> getAllTransactions(){
         return activity;
