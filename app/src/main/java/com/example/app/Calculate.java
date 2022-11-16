@@ -52,6 +52,8 @@ class MembershipExpenses implements Calculate{
     }
 }
 class ShoppingExpenses implements Calculate{
+    ShoppingExpenses(){
+    }
     @Override
     public double sumExpenses(BankActivity ba){
         double sum = 0;

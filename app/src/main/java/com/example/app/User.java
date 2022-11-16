@@ -17,5 +17,8 @@ public class User {
         this.bankSetup = bankSetup;
         this.statements = new Stack<>();
     }
+    public String getName(){
+        return fullName;
+    }
 
 }

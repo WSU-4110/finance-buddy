@@ -1,5 +1,9 @@
 package com.example.app;
 
+import static java.sql.DriverManager.println;
+
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class BankActivity {
@@ -9,13 +13,19 @@ public class BankActivity {
     private User user;
 
     public BankActivity(User u){
-        u = user;
+        user = u;
+    }
+    public void setUser(User u){
+        user = u;
+    }
+    public String getUser(){
+        return user.getName();
     }
     public int getSize(){
         return size;
     }
     public void setCalculation(Calculate c){
-        c = calc;
+        calc = c;
     }
     public Calculate getCalculation(){
         return calc;
@@ -24,8 +34,15 @@ public class BankActivity {
         activity.add(tran);
         size++;
     }
+    public void removeTransaction(Transactions tran){
+        if(activity.contains(tran)){
+            activity.remove(tran);
+            size--;
+        }
+
+    }
     public Transactions getTransaction(int index){
-        if(index < 0 || index > 1000){
+        if(index < 0 || index > size){
             return null;
         }
         else{
@@ -33,12 +50,12 @@ public class BankActivity {
         }
     }
     public String getAllTransactionsString(){
-        String s  = "";
+        String res = "";
         for (int i = 0; i < size; i++){
-            s.concat(getTransaction(i).toStringT());
-            s.concat("  ");
+            String s = getTransaction(i).toStringT();
+             res = res.concat(s) + "  ";
         }
-        return s;
+        return res;
     }
     public ArrayList<Transactions> getAllTransactions(){
         return activity;
