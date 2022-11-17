@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.app.ui.dashboard.DashboardFragment;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -33,6 +35,9 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         housing = (EditText) findViewById(R.id.housing);
         subscriptions = (EditText) findViewById(R.id.subscriptions);
         other = (EditText) findViewById(R.id.other);
+
+        cancel = (Button) findViewById(R.id.cancel);
+        submit = (Button) findViewById(R.id.submit);
 
     }
 
@@ -68,10 +73,11 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cancel:
-                startActivity(new Intent(this, Dashboard.class));
+                startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.submit:
                 Submit();
+                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
     }
