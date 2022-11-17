@@ -14,6 +14,7 @@
         android:layout_marginEnd="15dp"
         android:text="@string/landing_text"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +26,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:text="public_token:\npublic-sandbox-12341234"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,10 +33,10 @@
 
     <TextView
         android:id="@+id/open_link"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="172dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="144dp"
         android:text="@string/open_link"
         android:textAlignment="center"
         android:textColor="#2196F3"
