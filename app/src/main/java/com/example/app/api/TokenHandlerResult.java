@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +43,7 @@ public class TokenHandlerResult extends AppCompatActivity {
             R.string.public_token_result,
             linkSuccess.getPublicToken()));
         result.setText(getString(
-            R.string.content_success2));
+            R.string.content_success));
         return Unit.INSTANCE;
       },
       linkExit -> {
@@ -74,14 +73,9 @@ public class TokenHandlerResult extends AppCompatActivity {
     tokenResult = findViewById(R.id.public_token_result);
 
     View button = findViewById(R.id.open_link);
-    Button b_button = (Button)button;
-    b_button.setText("Open Dashboard");
-
     button.setOnClickListener(view -> {
-      Intent intent = new Intent(this, MainActivity.class);
-      startActivity(intent);
-      //setOptionalEventListener();
-      //openLink();
+      setOptionalEventListener();
+      openLink();
     });
   }
 

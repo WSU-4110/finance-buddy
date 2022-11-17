@@ -28,7 +28,7 @@ public class SetupBank extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         if(view == later)
-            startActivity(new Intent(SetupBank.this, TokenNotification.class));
+            startActivity(new Intent(SetupBank.this, MainActivity.class));
         else
             startActivity(new Intent(SetupBank.this , TokenHandler.class));
 
