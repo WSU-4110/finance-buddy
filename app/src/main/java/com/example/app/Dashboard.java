@@ -27,29 +27,33 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Dashboard extends AppCompatActivity{
+public class Dashboard extends AppCompatActivity implements View.OnClickListener{
 
     //private ActivityMainBinding binding;
-    private EditText editspending, editgoal;
-
+    private Button inputManually;
     private Button uploadStatement;
-    private TextView path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_dashboard);
+        inputManually = (Button) findViewById(R.id.input_manually);
+        inputManually.setOnClickListener(this);
 
-        editspending = (EditText) findViewById(R.id.spending);
-        editgoal = (EditText) findViewById(R.id.goal);
-
+        uploadStatement = (Button) findViewById(R.id.uploadStatement);
+        uploadStatement.setOnClickListener(this);
     }
 
 
-    private void setGoal() {
-        Float spending = Float.valueOf(editspending.getText().toString());
-        Float goal = Float.valueOf(editspending.getText().toString());
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.input_manually:
+                startActivity(new Intent(this, InputManually.class));
+                break;
+            case R.id.uploadStatement:
+                startActivity(new Intent(this, RegisterUser.class));
+                break;
+        }
     }
-
 }

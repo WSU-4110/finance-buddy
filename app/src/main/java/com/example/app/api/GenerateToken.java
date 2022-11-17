@@ -50,7 +50,7 @@ public class GenerateToken {
 
         LinkTokenCreateRequest request = new LinkTokenCreateRequest()
                 .user(user)
-                .clientName("Plaid Test App")
+                .clientName("Finance Buddy")
                 .products(Arrays.asList(Products.AUTH))
                 .countryCodes(Arrays.asList(CountryCode.US))
                 .language("en")

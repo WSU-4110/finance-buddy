@@ -50,6 +50,9 @@
             android:name=".SetupBank">
         </activity>
 
+        <activity android:name=".TokenNotification"></activity>
+        <activity android:name=".Dashboard"></activity>
+        <activity android:name=".InputManually"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
