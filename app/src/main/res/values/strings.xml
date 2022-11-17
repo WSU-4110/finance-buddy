@@ -20,7 +20,7 @@
     \n2) Visit <a href="http://plaid.com/docs/link/android">http://plaid.com/docs/link/android</a> for more information on how to integrate
     \n3) Ready for the big leagues? Unlock production access by visiting <a href="http://plaid.com/contact">http://plaid.com/contact</a></string>
     -->
-    <string name = "content_success2">
+    <string name="content_success2">
         Bank account successfully linked to your Finance Buddy account. Head to the dashboard to get started.
     </string>
     <string name="content_cancelled">Institution Id:\n%1$s\n\n Institution Name:\n%2$s\n\n Link Session Id:\n%3$s\n\n Status:\n%4$s</string>
