@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app.MainActivity;
 import com.example.app.R;
 import com.plaid.link.Plaid;
 import com.plaid.link.configuration.LinkTokenConfiguration;

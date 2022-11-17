@@ -22,6 +22,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app.MainActivity;
 import com.example.app.R;
 import com.plaid.link.OpenPlaidLink;
 import com.plaid.link.Plaid;
