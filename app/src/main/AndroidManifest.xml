@@ -53,11 +53,6 @@
             android:name=".SetupBank">
         </activity>
 
-<<<<<<< HEAD
-=======
-        <activity android:name=".TokenNotification"></activity>
-        <activity android:name=".Dashboard"></activity>
->>>>>>> parent of 732dfc1 (Input Manually Working)
         <activity
             android:name=".LoginActivity"
             android:exported="true">
