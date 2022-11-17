@@ -22,7 +22,12 @@ public class Transactions {
     public String getType(){
         return type;
     }
-    public double getAmount(){
-        return amount;
+    public void setAmount(double amt) { amount = amt; }
+    public double getAmount(){return amount;}
+    public Date getDate() { return date;}
+    @Override
+    public String toString() {
+
+        return "";
     }
 }
