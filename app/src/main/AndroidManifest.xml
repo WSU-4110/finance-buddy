@@ -47,9 +47,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity">
-        </activity>
-        <activity
             android:name=".SetupBank">
         </activity>
 
