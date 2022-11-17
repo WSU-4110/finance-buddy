@@ -4,20 +4,128 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.Profile.ProfileFragment">
 
     <TextView
-        android:id="@+id/text_profile"
+        android:id="@+id/profileName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
         android:layout_marginBottom="8dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <TextView
+        android:id="@+id/profilePassword"
+        android:layout_width="164dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginBottom="50dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:text="true"
+        app:layout_constraintBottom_toTopOf="@+id/displaySpending"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileEmail"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/displayGoals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="148dp"
+        android:layout_marginEnd="336dp"
+        android:layout_marginBottom="16dp"
+        android:text="Goals:"
+        app:layout_constraintBottom_toTopOf="@+id/profileGoal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePassword"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/displaySpending"
+        android:layout_width="69dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="310dp"
+        android:layout_marginBottom="24dp"
+        android:text="Spendings:"
+        app:layout_constraintBottom_toTopOf="@+id/profileSpending"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilePassword"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/updateProfileButton"
+        android:layout_width="169dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="126dp"
+        android:layout_marginBottom="184dp"
+        android:text="Update Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileGoal"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/profileSpending"
+        android:layout_width="219dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="24dp"
+        android:text="9999999"
+        app:layout_constraintBottom_toTopOf="@+id/displayGoals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displaySpending" />
+
+    <TextView
+        android:id="@+id/profileGoal"
+        android:layout_width="216dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="179dp"
+        android:layout_marginBottom="83dp"
+        android:text="1000000000"
+        app:layout_constraintBottom_toTopOf="@+id/updateProfileButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayGoals" />
+
+    <TextView
+        android:id="@+id/profileEmail"
+        android:layout_width="163dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="27dp"
+        android:text="Email"
+        app:layout_constraintBottom_toTopOf="@+id/profilePassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
