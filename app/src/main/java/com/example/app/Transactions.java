@@ -22,7 +22,18 @@ public class Transactions {
     public String getType(){
         return type;
     }
+    public void setAmount(Double amt) {
+        amount = amt;
+    }
     public double getAmount(){
         return amount;
+    }
+    public Date getDate() {
+        return date;
+    }
+    @Override
+    public String toString() {
+
+        return "Date: " + date + " " + "Type: " + type + "Amount: " + amount;
     }
 }
