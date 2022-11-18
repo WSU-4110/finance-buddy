@@ -1,48 +1,48 @@
 package com.example.app;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class GoalsTest {
     @Test
-    void setGroceries_test() {
+    public void setGroceries_test() {
         Goals t = new Goals();
         t.setGroceriesGoals(100);
-        assertEquals(100, t.getGroceriesGoals());
+        assertEquals(100, t.getGroceriesGoals(), 0);
     }
 
     @Test
-    void setRestaurants_test() {
+    public void setRestaurants_test() {
         Goals t = new Goals();
         t.setRestaurantsGoals(100);
-        assertEquals(100, t.getRestaurantsGoals());
+        assertEquals(100, t.getRestaurantsGoals(), 0);
     }
 
     @Test
-    void setHousing_test() {
+    public void setHousing_test() {
         Goals t = new Goals();
         t.setHousingGoals(100);
-        assertEquals(100, t.getHousingGoals());
+        assertEquals(100, t.getHousingGoals(), 0);
     }
 
     @Test
-    void setUtilities_test() {
+    public void setUtilities_test() {
         Goals t = new Goals();
         t.setUtilitiesGoals(100);
-        assertEquals(100, t.getUtilitiesGoals());
+        assertEquals(100, t.getUtilitiesGoals(), 0);
     }
 
     @Test
-    void setHousing_test() {
+    public void setSubscriptions_test() {
         Goals t = new Goals();
-        t.setHousingGoals(100);
-        assertEquals(100, t.getHousingGoals());
+        t.setSubscriptionsGoals(100);
+        assertEquals(100, t.getSubscriptionsGoals(), 0);
     }
 
     @Test
-    void setUtilities_test() {
+    public void total_test() {
         Goals t = new Goals(100,100,100,100,100,100,100,100,100);
-        assertEquals(100, t.total());
+        assertEquals(900, t.total(), 0);
     }
 }
