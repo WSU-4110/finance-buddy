@@ -14,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.MainActivity;
 import com.example.app.R;
-import com.example.app.TokenNotification;
+import com.example.app.notifications.TokenNotification;
+
 import com.plaid.link.OpenPlaidLink;
 import com.plaid.link.Plaid;
 import com.plaid.link.configuration.LinkTokenConfiguration;
@@ -63,6 +63,7 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
 
     link.setText("Go to Dashboard");
     link.setOnClickListener(view -> {
+
       Intent intent = new Intent(this, TokenNotification.class);
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
       startActivity(intent);
@@ -175,4 +176,5 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
       openLink();
 
   }
+
 }

@@ -1,8 +1,12 @@
 package com.example.app.api;
+
 import android.util.Log;
 
+import com.example.app.R;
 import com.plaid.client.ApiClient;
 import com.plaid.client.model.CountryCode;
+import com.plaid.client.model.ItemPublicTokenExchangeRequest;
+import com.plaid.client.model.ItemPublicTokenExchangeResponse;
 import com.plaid.client.model.LinkTokenCreateRequest;
 import com.plaid.client.model.LinkTokenCreateRequestUser;
 
@@ -21,9 +25,10 @@ public class GenerateToken {
     private boolean b = false;
     private final String clientId = "633f656d3246d000121548ae";
     private final String secretSandbox = "94438bcdf84b7aad28e91f77f9f353";
+    PlaidApi plaidClient = null;
 
-    public PlaidApi createClient() throws ExceptionInInitializerError{
-        PlaidApi plaidClient = null;
+    public void createClient() throws ExceptionInInitializerError{
+
         try{
             HashMap<String, String> apiKeys = new HashMap<String, String>();
             apiKeys.put("clientId", clientId);
@@ -37,6 +42,9 @@ public class GenerateToken {
         }catch(ExceptionInInitializerError e){
             Log.e("client-error", "Error creating client");
         }
+
+    }
+    public PlaidApi getClient(){
         return plaidClient;
     }
 
@@ -60,7 +68,8 @@ public class GenerateToken {
                 @Override
                 public void run() {
                     try{
-                        response = createClient().linkTokenCreate(request).execute();
+                        createClient();
+                        response = getClient().linkTokenCreate(request).execute();
                         b = true;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -75,6 +84,15 @@ public class GenerateToken {
 
         while(!b){};
         return response.body().getLinkToken();
+    }
+    private void tokenExchange() throws IOException {
+        ItemPublicTokenExchangeRequest request = new ItemPublicTokenExchangeRequest()
+                .publicToken(String.valueOf(R.string.public_token_result));
+        Response<ItemPublicTokenExchangeResponse> response = getClient()
+                .itemPublicTokenExchange(request)
+                .execute();
+        String accessToken = response.body().getAccessToken();
+        Log.e("access",accessToken);
     }
 }
 
