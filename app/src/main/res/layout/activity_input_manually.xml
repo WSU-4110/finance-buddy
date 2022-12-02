@@ -11,7 +11,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Utilities"
+        android:hint="Input Utilities"
         app:layout_constraintBottom_toTopOf="@+id/housing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,7 +21,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Housing"
+        android:hint="Input Housing"
         app:layout_constraintBottom_toTopOf="@+id/subscriptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Subscriptions"
+        android:hint="Input Subscriptions"
         app:layout_constraintBottom_toTopOf="@+id/other"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,7 +41,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Other"
+        android:hint="Input Other"
         app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -50,19 +50,19 @@
         android:id="@+id/groceries"
         android:layout_width="339dp"
         android:layout_height="47dp"
-        android:text="Input Groceries"
+        android:hint="Input Groceries"
         app:layout_constraintBottom_toTopOf="@+id/restaurants"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintVertical_bias="0.883" />
 
     <EditText
         android:id="@+id/restaurants"
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Restaurants"
+        android:hint="Input Restaurants"
         app:layout_constraintBottom_toTopOf="@+id/transportation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -72,7 +72,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Transportation"
+        android:hint="Input Transportation"
         app:layout_constraintBottom_toTopOf="@+id/entertainment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -82,7 +82,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Entertainment"
+        android:hint="Input Entertainment"
         app:layout_constraintBottom_toTopOf="@+id/clothing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -92,7 +92,7 @@
         android:layout_width="339dp"
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
-        android:text="Input Clothing"
+        android:hint="Input Clothing"
         app:layout_constraintBottom_toTopOf="@+id/utilities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -102,6 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:onClick="onClick"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/submit"
@@ -114,6 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="80dp"
         android:layout_marginBottom="40dp"
+        android:onClick="onClick"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

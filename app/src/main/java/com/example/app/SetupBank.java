@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.api.TokenHandler;
+import com.example.app.notifications.TokenNotification;
 
 public class SetupBank extends AppCompatActivity implements View.OnClickListener {
 

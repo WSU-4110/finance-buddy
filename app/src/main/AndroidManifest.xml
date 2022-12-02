@@ -20,11 +20,7 @@
 
 
 
-        <activity
-            android:name=".api.TokenHandlerResult"
-            android:exported="true"
-            android:label="@string/title_activity_main_activity_result_contract_java"
-            android:theme="@style/Theme.AppCompat" />
+
         <activity
             android:name=".ForgotPassword"
             android:exported="false">
@@ -53,8 +49,9 @@
             android:name=".SetupBank">
         </activity>
 
-        <activity android:name=".TokenNotification"></activity>
+        <activity android:name=".notifications.TokenNotification"></activity>
         <activity android:name=".Dashboard"></activity>
+        <activity android:name=".InputManually"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
