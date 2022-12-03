@@ -22,36 +22,14 @@ import java.util.HashMap;
 
 public class GenerateToken {
     private Response<LinkTokenCreateResponse> response = null;
+
     private boolean b = false;
-    private final String clientId = "633f656d3246d000121548ae";
-    private final String secretSandbox = "94438bcdf84b7aad28e91f77f9f353";
-    PlaidApi plaidClient = null;
-
-    public void createClient() throws ExceptionInInitializerError{
-
-        try{
-            HashMap<String, String> apiKeys = new HashMap<String, String>();
-            apiKeys.put("clientId", clientId);
-            apiKeys.put("secret", secretSandbox);
-            apiKeys.put("plaidVersion", "2020-09-14");
-            ApiClient apiClient = new ApiClient(apiKeys);
-            apiClient.setPlaidAdapter(ApiClient.Sandbox);
-
-            plaidClient = apiClient.createService(PlaidApi.class);
-
-        }catch(ExceptionInInitializerError e){
-            Log.e("client-error", "Error creating client");
-        }
-
-    }
-    public PlaidApi getClient(){
-        return plaidClient;
-    }
+    PlaidApi p = Client.getClient();
 
     public String generate() throws IOException, ExceptionInInitializerError {
 
         LinkTokenCreateRequestUser user = new LinkTokenCreateRequestUser()
-                .clientUserId(clientId)
+                .clientUserId("633f656d3246d000121548ae")
                 .legalName("legal name")
                 .phoneNumber("4155558888")
                 .emailAddress("email@address.com");
@@ -68,31 +46,20 @@ public class GenerateToken {
                 @Override
                 public void run() {
                     try{
-                        createClient();
-                        response = getClient().linkTokenCreate(request).execute();
+                        response = p.linkTokenCreate(request).execute();
                         b = true;
                     } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+                        e.printStackTrace();}}
             });
             thread.start();
-
         }catch (ExceptionInInitializerError e){
             Log.e("tag response", e.getCause().toString());
         }
 
         while(!b){};
-        return response.body().getLinkToken();
+        String public_token = response.body().getLinkToken();
+        return public_token;
     }
-    private void tokenExchange() throws IOException {
-        ItemPublicTokenExchangeRequest request = new ItemPublicTokenExchangeRequest()
-                .publicToken(String.valueOf(R.string.public_token_result));
-        Response<ItemPublicTokenExchangeResponse> response = getClient()
-                .itemPublicTokenExchange(request)
-                .execute();
-        String accessToken = response.body().getAccessToken();
-        Log.e("access",accessToken);
-    }
+
 }
 
