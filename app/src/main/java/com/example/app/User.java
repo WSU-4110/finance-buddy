@@ -18,4 +18,7 @@ public class User {
         this.statements = new Stack<>();
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 }

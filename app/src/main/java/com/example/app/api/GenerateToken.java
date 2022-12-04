@@ -37,7 +37,7 @@ public class GenerateToken {
         LinkTokenCreateRequest request = new LinkTokenCreateRequest()
                 .user(user)
                 .clientName("Finance Buddy")
-                .products(Arrays.asList(Products.AUTH))
+                .products(Arrays.asList(Products.AUTH, Products.TRANSACTIONS))
                 .countryCodes(Arrays.asList(CountryCode.US))
                 .language("en")
                 .androidPackageName("com.example.app");
@@ -57,6 +57,7 @@ public class GenerateToken {
         }
 
         while(!b){};
+
         String public_token = response.body().getLinkToken();
         return public_token;
     }

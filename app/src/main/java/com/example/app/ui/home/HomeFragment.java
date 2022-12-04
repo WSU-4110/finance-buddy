@@ -1,6 +1,7 @@
 package com.example.app.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,27 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.app.R;
+import com.example.app.api.Client;
+import com.example.app.api.TokenHandler;
 import com.example.app.databinding.FragmentHomeBinding;
+import com.plaid.client.model.AccountBase;
+import com.plaid.client.model.AccountsGetRequest;
+import com.plaid.client.model.AccountsGetRequestOptions;
+import com.plaid.client.model.AccountsGetResponse;
+import com.plaid.client.request.PlaidApi;
+
+import java.util.List;
+
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private TextView accounts;
+    private PlaidApi p = Client.getClient();
+    private Response<AccountsGetResponse> response = null;
+    private boolean c = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -26,7 +43,39 @@ public class HomeFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+
+        accounts = (TextView) root.findViewById(R.id.accounts_text);
+        String res = getAccountInfo();
+        accounts.setText(res);
         return root;
+    }
+    public String getAccountInfo(){
+        AccountsGetRequest request = new AccountsGetRequest().accessToken(TokenHandler.ACCESS_TOKEN);
+
+        String s = request.toString();
+        Log.e("REQUESt for acc", s);
+        try{
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try{
+                        response = p.accountsGet(request).execute();
+                        c = true;
+                    } catch (Exception e) {
+                        //String fii = response.errorBody().toString();
+                        e.printStackTrace();
+                        Log.e("error message",e.getMessage());}}
+            });
+            thread.start();
+        }catch (ExceptionInInitializerError e){
+            Log.e("tag response", e.getCause().toString());
+        }
+
+        while(!c){};
+        List<AccountBase> accounts = response.body().getAccounts();
+        String test = accounts.get(0).getName();
+        return test;
     }
 
     @Override

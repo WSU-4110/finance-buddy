@@ -45,7 +45,7 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
   private TextView tokenResult;
   private TextView link;
 
-  public String ACCESS_TOKEN;
+  public static String ACCESS_TOKEN;
 
   private ActivityResultLauncher<LinkTokenConfiguration> linkAccountToPlaid = registerForActivityResult(
       new OpenPlaidLink(),
