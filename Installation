@@ -1,5 +1,8 @@
 INSTALLATION PROCEDURE  
 
+NOTE: this project requires Android Studio with emoulator
+
+
 Within command-line create and or navigate to the desired location
 create directory via: mkdir "foldername"
 navigate to folder via: cd "folder"Name"
