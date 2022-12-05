@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.app.LoginActivity;
 import com.example.app.R;
 import com.example.app.api.Client;
 import com.example.app.api.TokenHandler;
@@ -46,8 +47,12 @@ public class HomeFragment extends Fragment {
 
 
         accounts = (TextView) root.findViewById(R.id.accounts_text);
-        String res = getAccountInfo();
-        accounts.setText(res);
+
+        if(LoginActivity.bankSetup){
+            String res = getAccountInfo();
+            accounts.setText(res);
+        }
+        else accounts.setText("No Accounts Setup");
         return root;
     }
     public String getAccountInfo(){
@@ -74,8 +79,15 @@ public class HomeFragment extends Fragment {
 
         while(!c){};
         List<AccountBase> accounts = response.body().getAccounts();
-        String test = accounts.get(0).getName();
-        return test;
+        String a = "";
+        
+        for(int i = 0; i < accounts.size(); i++){
+            Log.e("accountget","Account getName: " + accounts.get(i).getName());
+            a = a.concat(accounts.get(i).getName() + "\n");
+
+        }
+
+        return a;
     }
 
     @Override

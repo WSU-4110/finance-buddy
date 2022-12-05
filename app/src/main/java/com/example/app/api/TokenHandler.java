@@ -22,10 +22,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app.LoginActivity;
 import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.notifications.TokenNotification;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.plaid.link.OpenPlaidLink;
 import com.plaid.link.Plaid;
 import com.plaid.link.configuration.LinkTokenConfiguration;
@@ -47,6 +52,10 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
 
   public static String ACCESS_TOKEN;
 
+  private DatabaseReference mDatabase;
+  private FirebaseAuth mAuth;
+
+
   private ActivityResultLauncher<LinkTokenConfiguration> linkAccountToPlaid = registerForActivityResult(
       new OpenPlaidLink(),
       result -> {
@@ -58,7 +67,7 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
       });
 
   private void showSuccess(LinkSuccess success){
-    tokenResult.setText(getString(R.string.public_token_result, success.getPublicToken()));
+    //tokenResult.setText(getString(R.string.public_token_result, success.getPublicToken()));
     result.setText(getString(R.string.content_success2));
 
     Log.e("Public token",tokenResult.getText().toString());
@@ -66,6 +75,12 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
     String publicToken = success.getPublicToken();
     ExchangeToken exToken = new ExchangeToken();
     ACCESS_TOKEN = exToken.tokenExchange(publicToken);
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userID = user.getUid();
+    mDatabase.child(userID).child("bankSetup").setValue(true);
+
+    LoginActivity.bankSetup = true;
 
     link.setText("Go to Dashboard");
     link.setOnClickListener(view -> {
@@ -92,6 +107,9 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
+    mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+    mAuth = FirebaseAuth.getInstance();
     try{
       super.onCreate(savedInstanceState);
       setContentView(R.layout.plaid_setup);
