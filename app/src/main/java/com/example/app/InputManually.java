@@ -17,7 +17,7 @@ import java.util.Date;
 public class InputManually extends AppCompatActivity implements View.OnClickListener {
 
     //private ActivityMainBinding binding;
-    private EditText groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
+    private EditText date, groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
     private Button cancel, submit;
 
 
@@ -26,6 +26,7 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_manually);
 
+        date = (EditText) findViewById(R.id.date);
         groceries = (EditText) findViewById(R.id.groceries);
         restaurants = (EditText) findViewById(R.id.restaurants);
         transportation = (EditText) findViewById(R.id.transportation);
@@ -52,32 +53,20 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         Double h = Double.valueOf(housing.getText().toString());
         Double s = Double.valueOf(subscriptions.getText().toString());
         Double o = Double.valueOf(other.getText().toString());
+        String d = date.getText().toString();
 
-        LocalDate dateObj = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            dateObj = LocalDate.now();
-        }
-        DateTimeFormatter formatter = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        }
-        String date = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            date = dateObj.format(formatter);
-        }
-
-        Statement statement = new Statement(g,r,t,e,c,u,h,s,o, date);
+        Statement statement = new Statement(g,r,t,e,c,u,h,s,o,d);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cancel:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, DashboardFragment.class));
                 break;
             case R.id.submit:
                 Submit();
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, DashboardFragment.class));
                 break;
         }
     }
