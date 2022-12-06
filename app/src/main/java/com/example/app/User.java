@@ -20,4 +20,7 @@ public class User {
         this.statements.push(statement);
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 }

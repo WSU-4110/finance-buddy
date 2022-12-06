@@ -22,10 +22,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app.LoginActivity;
 import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.notifications.TokenNotification;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.plaid.link.OpenPlaidLink;
 import com.plaid.link.Plaid;
 import com.plaid.link.configuration.LinkTokenConfiguration;
@@ -34,6 +39,8 @@ import com.plaid.link.result.LinkSuccess;
 
 
 //import com.plaid.linksample.network.LinkTokenRequester;
+import java.io.IOException;
+
 import kotlin.Unit;
 
 
@@ -42,6 +49,11 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
   private TextView result;
   private TextView tokenResult;
   private TextView link;
+
+  public static String ACCESS_TOKEN;
+
+  private DatabaseReference mDatabase;
+  private FirebaseAuth mAuth;
 
 
   private ActivityResultLauncher<LinkTokenConfiguration> linkAccountToPlaid = registerForActivityResult(
@@ -54,22 +66,28 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
         }
       });
 
-  private void showSuccess(LinkSuccess success) {
-    tokenResult.setText(getString(R.string.public_token_result, success.getPublicToken()));
+  private void showSuccess(LinkSuccess success){
+    //tokenResult.setText(getString(R.string.public_token_result, success.getPublicToken()));
     result.setText(getString(R.string.content_success2));
 
     Log.e("Public token",tokenResult.getText().toString());
+    //Exchange public token for access token
+    String publicToken = success.getPublicToken();
+    ExchangeToken exToken = new ExchangeToken();
+    ACCESS_TOKEN = exToken.tokenExchange(publicToken);
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userID = user.getUid();
+    mDatabase.child(userID).child("bankSetup").setValue(true);
+
+    LoginActivity.bankSetup = true;
 
     link.setText("Go to Dashboard");
     link.setOnClickListener(view -> {
-
       Intent intent = new Intent(this, TokenNotification.class);
       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
       startActivity(intent);
     });
-
-
   }
 
   private void showFailure(LinkExit exit) {
@@ -87,9 +105,11 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
   }
 
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
+    mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+    mAuth = FirebaseAuth.getInstance();
     try{
       super.onCreate(savedInstanceState);
       setContentView(R.layout.plaid_setup);
@@ -102,8 +122,6 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
 
     link = findViewById(R.id.open_link);
     link.setOnClickListener(this);
-
-
   }
 
   /**
@@ -151,7 +169,6 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
     MenuInflater inflater = getMenuInflater();
 
     inflater.inflate(R.menu.menu_java, menu);
-
     return true;
   }
 
@@ -171,10 +188,7 @@ public class TokenHandler extends AppCompatActivity implements View.OnClickListe
 
   @Override
   public void onClick(View view) {
-
       setOptionalEventListener();
       openLink();
-
   }
-
 }
