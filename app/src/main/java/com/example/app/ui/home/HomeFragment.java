@@ -13,15 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app.LoginActivity;
 import com.example.app.R;
+import com.example.app.RegisterUser;
+import com.example.app.User;
 import com.example.app.api.Client;
 import com.example.app.api.TokenHandler;
 import com.example.app.databinding.FragmentHomeBinding;
 import com.plaid.client.model.AccountBase;
 import com.plaid.client.model.AccountsGetRequest;
-import com.plaid.client.model.AccountsGetRequestOptions;
 import com.plaid.client.model.AccountsGetResponse;
 import com.plaid.client.request.PlaidApi;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import retrofit2.Response;
@@ -30,9 +32,12 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private TextView accounts;
+    private TextView balance;
     private PlaidApi p = Client.getClient();
     private Response<AccountsGetResponse> response = null;
     private boolean c = false;
+    private String accounts_ui;
+    private String balance_ui;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,15 +52,15 @@ public class HomeFragment extends Fragment {
 
 
         accounts = (TextView) root.findViewById(R.id.accounts_text);
+        balance = (TextView) root.findViewById(R.id.accounts_balance);
 
         if(LoginActivity.bankSetup){
-            String res = getAccountInfo();
-            accounts.setText(res);
+            getAccountInfo();
         }
         else accounts.setText("No Accounts Setup");
         return root;
     }
-    public String getAccountInfo(){
+    public void getAccountInfo(){
         AccountsGetRequest request = new AccountsGetRequest().accessToken(TokenHandler.ACCESS_TOKEN);
 
         String s = request.toString();
@@ -78,16 +83,20 @@ public class HomeFragment extends Fragment {
         }
 
         while(!c){};
-        List<AccountBase> accounts = response.body().getAccounts();
+        List<AccountBase> accountsList = response.body().getAccounts();
         String a = "";
-        
-        for(int i = 0; i < accounts.size(); i++){
-            Log.e("accountget","Account getName: " + accounts.get(i).getName());
-            a = a.concat(accounts.get(i).getName() + "\n");
+        String b = "";
 
+        DecimalFormat df = new DecimalFormat("0.00");
+
+
+        for(int i = 0; i < accountsList.size(); i++){
+            a = a.concat(accountsList.get(i).getName() + "\n");
+            b = b.concat("$" + df.format(accountsList.get(i).getBalances().getCurrent())  + "\n");
         }
+        accounts.setText(a);
+        balance.setText(b);
 
-        return a;
     }
 
     @Override
