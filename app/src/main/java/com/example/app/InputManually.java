@@ -62,11 +62,11 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cancel:
-                startActivity(new Intent(this, DashboardFragment.class));
+                startActivity(new Intent(this, Dashboard.class));
                 break;
             case R.id.submit:
                 Submit();
-                startActivity(new Intent(this, DashboardFragment.class));
+                startActivity(new Intent(this, Dashboard.class));
                 break;
         }
     }
