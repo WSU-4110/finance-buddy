@@ -1,7 +1,7 @@
 # finance-buddy
 
 This is a group term project for software engineering and design csc4110 at Wayne State University
-COntributors: Aidan Van Gessel, Matthew Miller, Nikolas Crasiuc, Abdul-Muqeet Junaid, Muhammad Khan
+Contributors: Aidan Van Gessel, Matthew Miller, Nikolas Crasiuc, Abdul-Muqeet Junaid, Muhammad Khan
 
 the finance-buddy android app is intended to be a learning experience using AGILE development
 Beyond that, it also provides practical knowledge working in android studio as well as firebase services
@@ -11,3 +11,8 @@ The user may also decide to manually or scan a document with their spending hist
 additionally they can set a goal for themselves to stay under their desired spending limit
 taking in this data stored in firebase we aim to track and give feedback to help the user manage finances
 feedback includes earning coupons or discounts for maintaining their gooals, or suggesting changes when a goal was not met
+
+Technology Stack
+
+Java and Kotlin using Android Studio front end
+Firebase back end
