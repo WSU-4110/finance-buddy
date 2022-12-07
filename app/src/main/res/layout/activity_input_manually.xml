@@ -12,6 +12,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Date"
+        android:inputType="date|datetime"
         app:layout_constraintBottom_toTopOf="@+id/groceries"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="20dp"
         android:hint="Input Utilities"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/housing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -34,6 +36,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Housing"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/subscriptions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -44,6 +47,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Subscriptions"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/other"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -54,6 +58,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="8dp"
         android:hint="Input Other"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -64,6 +69,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Groceries"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/restaurants"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -74,6 +80,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Restaurants"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/transportation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -84,6 +91,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Transportation"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/entertainment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -94,6 +102,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Entertainment"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/clothing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -104,6 +113,7 @@
         android:layout_height="47dp"
         android:layout_marginBottom="16dp"
         android:hint="Input Clothing"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/utilities"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

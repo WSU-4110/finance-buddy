@@ -22,7 +22,7 @@ import java.util.Date;
 public class InputManually extends AppCompatActivity implements View.OnClickListener {
 
     //private ActivityMainBinding binding;
-    private EditText date, groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
+    private EditText dateEdit, groceriesEdit, restaurantsEdit, transportationEdit, entertainmentEdit, clothingEdit, utilitiesEdit, housingEdit, subscriptionsEdit, otherEdit;
     private Button cancel, submit;
     private DatabaseReference mDatabase;
 
@@ -32,16 +32,16 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_manually);
 
-        date = (EditText) findViewById(R.id.date);
-        groceries = (EditText) findViewById(R.id.groceries);
-        restaurants = (EditText) findViewById(R.id.restaurants);
-        transportation = (EditText) findViewById(R.id.transportation);
-        entertainment = (EditText) findViewById(R.id.entertainment);
-        clothing = (EditText) findViewById(R.id.clothing);
-        utilities = (EditText) findViewById(R.id.utilities);
-        housing = (EditText) findViewById(R.id.housing);
-        subscriptions = (EditText) findViewById(R.id.subscriptions);
-        other = (EditText) findViewById(R.id.other);
+        dateEdit = (EditText) findViewById(R.id.date);
+        groceriesEdit = (EditText) findViewById(R.id.groceries);
+        restaurantsEdit = (EditText) findViewById(R.id.restaurants);
+        transportationEdit = (EditText) findViewById(R.id.transportation);
+        entertainmentEdit = (EditText) findViewById(R.id.entertainment);
+        clothingEdit = (EditText) findViewById(R.id.clothing);
+        utilitiesEdit = (EditText) findViewById(R.id.utilities);
+        housingEdit = (EditText) findViewById(R.id.housing);
+        subscriptionsEdit = (EditText) findViewById(R.id.subscriptions);
+        otherEdit = (EditText) findViewById(R.id.other);
 
         cancel = (Button) findViewById(R.id.cancel);
         submit = (Button) findViewById(R.id.submit);
@@ -50,16 +50,77 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
 
 
     private void Submit() {
-        Double g = Double.valueOf(groceries.getText().toString());
-        Double r = Double.valueOf(restaurants.getText().toString());
-        Double t = Double.valueOf(transportation.getText().toString());
-        Double e = Double.valueOf(entertainment.getText().toString());
-        Double c = Double.valueOf(clothing.getText().toString());
-        Double u = Double.valueOf(utilities.getText().toString());
-        Double h = Double.valueOf(housing.getText().toString());
-        Double s = Double.valueOf(subscriptions.getText().toString());
-        Double o = Double.valueOf(other.getText().toString());
-        String d = date.getText().toString();
+        String d = dateEdit.getText().toString();
+        String groceries = groceriesEdit.getText().toString();
+        String restaurants = restaurantsEdit.getText().toString();
+        String transportation = transportationEdit.getText().toString();
+        String entertainment = entertainmentEdit.getText().toString();
+        String clothing = clothingEdit.getText().toString();
+        String utilities = utilitiesEdit.getText().toString();
+        String housing = housingEdit.getText().toString();
+        String subscriptions = subscriptionsEdit.getText().toString();
+        String other = otherEdit.getText().toString();
+
+        if(d.isEmpty()){
+            dateEdit.setError("Enter a Date");
+            dateEdit.requestFocus();
+            return;
+        }
+        if(groceries.isEmpty()){
+            groceriesEdit.setError("Enter an Amount");
+            groceriesEdit.requestFocus();
+            return;
+        }
+        if(restaurants.isEmpty()){
+            restaurantsEdit.setError("Enter an Amount");
+            restaurantsEdit.requestFocus();
+            return;
+        }
+        if(transportation.isEmpty()){
+            transportationEdit.setError("Enter an Amount");
+            transportationEdit.requestFocus();
+            return;
+        }
+        if(entertainment.isEmpty()){
+            entertainmentEdit.setError("Enter an Amount");
+            entertainmentEdit.requestFocus();
+            return;
+        }
+        if(clothing.isEmpty()){
+            clothingEdit.setError("Enter an Amount");
+            clothingEdit.requestFocus();
+            return;
+        }
+        if(utilities.isEmpty()){
+            utilitiesEdit.setError("Enter an Amount");
+            utilitiesEdit.requestFocus();
+            return;
+        }
+        if(housing.isEmpty()){
+            housingEdit.setError("Enter an Amount");
+            housingEdit.requestFocus();
+            return;
+        }
+        if(subscriptions.isEmpty()){
+            subscriptionsEdit.setError("Enter an Amount");
+            subscriptionsEdit.requestFocus();
+            return;
+        }
+        if(other.isEmpty()){
+            otherEdit.setError("Enter an Amount");
+            otherEdit.requestFocus();
+            return;
+        }
+
+        Double g = Double.valueOf(groceries);
+        Double r = Double.valueOf(restaurants);
+        Double t = Double.valueOf(transportation);
+        Double e = Double.valueOf(entertainment);
+        Double c = Double.valueOf(clothing);
+        Double u = Double.valueOf(utilities);
+        Double h = Double.valueOf(housing);
+        Double s = Double.valueOf(subscriptions);
+        Double o = Double.valueOf(other);
 
         Statement statement = new Statement(g,r,t,e,c,u,h,s,o,d);
 
@@ -68,6 +129,8 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         String userID = user.getUid();
         String s1 = mDatabase.child(userID).child("statements").push().getKey();
         mDatabase.child(userID).child("statements").child(s1).setValue(statement);
+
+        startActivity(new Intent(this, Dashboard.class));
     }
 
     @Override
@@ -78,7 +141,6 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.submit:
                 Submit();
-                startActivity(new Intent(this, Dashboard.class));
                 break;
         }
     }
