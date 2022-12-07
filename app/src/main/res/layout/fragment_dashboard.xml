@@ -11,7 +11,7 @@
         android:layout_width="251dp"
         android:layout_height="141dp"
         android:layout_marginBottom="48dp"
-        android:text="Input Manually"
+        android:text="Input Statement"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -44,11 +44,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/uploadStatement"
+        android:id="@+id/setGoals"
         android:layout_width="251dp"
         android:layout_height="141dp"
         android:layout_marginBottom="80dp"
-        android:text="Upload Statement"
+        android:text="Set Goals"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="OR"
-        app:layout_constraintBottom_toTopOf="@+id/uploadStatement"
+        app:layout_constraintBottom_toTopOf="@+id/setGoals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
