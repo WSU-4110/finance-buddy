@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private DatabaseReference mDatabase;
-    private boolean bankSetup;
+    public static boolean bankSetup;
 // ...
 
 
@@ -63,19 +63,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
-
-        //binding = ActivityMainBinding.inflate(getLayoutInflater());
-        //setContentView(binding.getRoot());
-
-        //BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-        //R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-        //.build();
-        //NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        //NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
 
@@ -136,8 +123,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     mDatabase.child(userID).child("bankSetup").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            //bankSetup = (boolean) snapshot.getValue();
-                            //^^^Once we setup a field for bankSetup on firebase we can uncomment this ^^^
+                            bankSetup = (boolean) snapshot.getValue();
+
+                            //Lets declare it as false for debugging
                             bankSetup = false;
                         }
                         @Override
