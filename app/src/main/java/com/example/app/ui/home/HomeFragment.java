@@ -39,11 +39,14 @@ public class HomeFragment extends Fragment {
     private TextView accounts;
     private TextView balance;
     private TextView titleT;
+    private TextView trans;
     private Button checking, savings;
     private PlaidApi client = Client.getClient();
     private Response<AccountsGetResponse> responseAcc = null;
     private Response<TransactionsGetResponse> responseTran = null;
     private boolean c,d= false;
+    private boolean check_b = false;
+    private boolean save_b = false;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -63,6 +66,7 @@ public class HomeFragment extends Fragment {
         checking = (Button) root.findViewById(R.id.b1);
         savings = (Button) root.findViewById(R.id.b2);
         titleT = (TextView) root.findViewById(R.id.title_Tran);
+        trans = (TextView) root.findViewById(R.id.transactions);
 
         if(LoginActivity.bankSetup){
             getAccountInfo();
@@ -70,24 +74,34 @@ public class HomeFragment extends Fragment {
         else accounts.setText("No Accounts Setup");
 
         checking.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v) {
-                getCheckings();
+                if(!check_b)
+                    getCheckings();
+                check_b = true;
+                save_b = false;
             }});
         savings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                getSavings();
+                if(!save_b)
+                    getSavings();
+                save_b = true;
+                check_b = false;
             }});
         return root;
     }
 
     private void getSavings() {
+        trans.setText("");
         titleT.setText("Savings Transactions:");
     }
 
     private void getCheckings(){
+        trans.setText("");
         titleT.setText("Checkings Transactions:");
+
 
         LocalDate startDate = null;
         LocalDate endDate = null;
@@ -97,12 +111,10 @@ public class HomeFragment extends Fragment {
             startDate = LocalDate.parse("2022-01-01");
             endDate = LocalDate.parse("2022-12-31");
         }
-
         // Pull transactions for a date range
         TransactionsGetRequest request = new TransactionsGetRequest().accessToken(TokenHandler.ACCESS_TOKEN)
                 .startDate(startDate)
                 .endDate(endDate);
-
         try{
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -119,15 +131,17 @@ public class HomeFragment extends Fragment {
             Log.e("tag response", e.getCause().toString());
         }
 
-        while(!c){};
+        while(!d){};
 
         //This is Plaid's Transaction class not ours
         List<Transaction> transactions = new ArrayList<Transaction>();
-        //fix 
         transactions.addAll(responseTran.body().getTransactions());
+
+        String a = "";
         for(int i = 0; i < transactions.size(); i++){
-            Log.e("t",transactions.get(i).getName());
+            a = a.concat(transactions.get(i).getName() + "\n");
         }
+        trans.setText(a);
     }
 
     public void getAccountInfo(){
