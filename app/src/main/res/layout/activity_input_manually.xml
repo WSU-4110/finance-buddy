@@ -56,10 +56,10 @@
         android:id="@+id/other"
         android:layout_width="339dp"
         android:layout_height="47dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:hint="Input Other"
         android:inputType="number|numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/cancel"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -122,22 +122,25 @@
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="28dp"
         android:onClick="onClick"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/submit"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.608"
+        app:layout_constraintStart_toEndOf="@+id/submit"
+        app:layout_constraintTop_toBottomOf="@+id/other"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="28dp"
         android:onClick="onClick"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
