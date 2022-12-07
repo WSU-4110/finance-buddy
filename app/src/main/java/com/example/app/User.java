@@ -7,6 +7,7 @@ public class User {
     public String fullName, age, email;
     public Stack<Statement> statements;
     public boolean bankSetup;
+
     public User() {
     }
 

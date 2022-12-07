@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.app.ui.dashboard.DashboardFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +24,7 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
     //private ActivityMainBinding binding;
     private EditText date, groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
     private Button cancel, submit;
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -56,6 +62,12 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         String d = date.getText().toString();
 
         Statement statement = new Statement(g,r,t,e,c,u,h,s,o,d);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = user.getUid();
+        String s1 = mDatabase.child(userID).child("statements").push().getKey();
+        mDatabase.child(userID).child("statements").child(s1).setValue(statement);
     }
 
     @Override
