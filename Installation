@@ -1,0 +1,10 @@
+INSTALLATION PROCEDURE  
+
+NOTE: this project requires Android Studio with emoulator
+
+
+Within command-line create and or navigate to the desired location
+create directory via: mkdir "foldername"
+navigate to folder via: cd "folder"Name"
+git clone https://github.com/WSU-4110/finance-buddy.git
+this will clone the project folder to the given target

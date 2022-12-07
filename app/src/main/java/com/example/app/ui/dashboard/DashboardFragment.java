@@ -16,6 +16,7 @@ import com.example.app.Dashboard;
 import com.example.app.InputManually;
 import com.example.app.R;
 import com.example.app.RegisterUser;
+import com.example.app.UploadStatement;
 import com.example.app.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment implements View.OnClickListener{
@@ -57,7 +58,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), InputManually.class));
                 break;
             case R.id.uploadStatement:
-                startActivity(new Intent(getActivity(), RegisterUser.class));
+                startActivity(new Intent(getActivity(), UploadStatement.class));
                 break;
         }
     }

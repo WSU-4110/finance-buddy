@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.app.ui.dashboard.DashboardFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,8 +22,9 @@ import java.util.Date;
 public class InputManually extends AppCompatActivity implements View.OnClickListener {
 
     //private ActivityMainBinding binding;
-    private EditText groceries, restaurants, transportation, entertainment, clothing, utilities, housing, subscriptions, other;
+    private EditText dateEdit, groceriesEdit, restaurantsEdit, transportationEdit, entertainmentEdit, clothingEdit, utilitiesEdit, housingEdit, subscriptionsEdit, otherEdit;
     private Button cancel, submit;
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -26,15 +32,16 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_manually);
 
-        groceries = (EditText) findViewById(R.id.groceries);
-        restaurants = (EditText) findViewById(R.id.restaurants);
-        transportation = (EditText) findViewById(R.id.transportation);
-        entertainment = (EditText) findViewById(R.id.entertainment);
-        clothing = (EditText) findViewById(R.id.clothing);
-        utilities = (EditText) findViewById(R.id.utilities);
-        housing = (EditText) findViewById(R.id.housing);
-        subscriptions = (EditText) findViewById(R.id.subscriptions);
-        other = (EditText) findViewById(R.id.other);
+        dateEdit = (EditText) findViewById(R.id.date);
+        groceriesEdit = (EditText) findViewById(R.id.groceries);
+        restaurantsEdit = (EditText) findViewById(R.id.restaurants);
+        transportationEdit = (EditText) findViewById(R.id.transportation);
+        entertainmentEdit = (EditText) findViewById(R.id.entertainment);
+        clothingEdit = (EditText) findViewById(R.id.clothing);
+        utilitiesEdit = (EditText) findViewById(R.id.utilities);
+        housingEdit = (EditText) findViewById(R.id.housing);
+        subscriptionsEdit = (EditText) findViewById(R.id.subscriptions);
+        otherEdit = (EditText) findViewById(R.id.other);
 
         cancel = (Button) findViewById(R.id.cancel);
         submit = (Button) findViewById(R.id.submit);
@@ -43,41 +50,97 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
 
 
     private void Submit() {
-        Double g = Double.valueOf(groceries.getText().toString());
-        Double r = Double.valueOf(restaurants.getText().toString());
-        Double t = Double.valueOf(transportation.getText().toString());
-        Double e = Double.valueOf(entertainment.getText().toString());
-        Double c = Double.valueOf(clothing.getText().toString());
-        Double u = Double.valueOf(utilities.getText().toString());
-        Double h = Double.valueOf(housing.getText().toString());
-        Double s = Double.valueOf(subscriptions.getText().toString());
-        Double o = Double.valueOf(other.getText().toString());
+        String d = dateEdit.getText().toString();
+        String groceries = groceriesEdit.getText().toString();
+        String restaurants = restaurantsEdit.getText().toString();
+        String transportation = transportationEdit.getText().toString();
+        String entertainment = entertainmentEdit.getText().toString();
+        String clothing = clothingEdit.getText().toString();
+        String utilities = utilitiesEdit.getText().toString();
+        String housing = housingEdit.getText().toString();
+        String subscriptions = subscriptionsEdit.getText().toString();
+        String other = otherEdit.getText().toString();
 
-        LocalDate dateObj = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            dateObj = LocalDate.now();
+        if(d.isEmpty()){
+            dateEdit.setError("Enter a Date");
+            dateEdit.requestFocus();
+            return;
         }
-        DateTimeFormatter formatter = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        if(groceries.isEmpty()){
+            groceriesEdit.setError("Enter an Amount");
+            groceriesEdit.requestFocus();
+            return;
         }
-        String date = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            date = dateObj.format(formatter);
+        if(restaurants.isEmpty()){
+            restaurantsEdit.setError("Enter an Amount");
+            restaurantsEdit.requestFocus();
+            return;
+        }
+        if(transportation.isEmpty()){
+            transportationEdit.setError("Enter an Amount");
+            transportationEdit.requestFocus();
+            return;
+        }
+        if(entertainment.isEmpty()){
+            entertainmentEdit.setError("Enter an Amount");
+            entertainmentEdit.requestFocus();
+            return;
+        }
+        if(clothing.isEmpty()){
+            clothingEdit.setError("Enter an Amount");
+            clothingEdit.requestFocus();
+            return;
+        }
+        if(utilities.isEmpty()){
+            utilitiesEdit.setError("Enter an Amount");
+            utilitiesEdit.requestFocus();
+            return;
+        }
+        if(housing.isEmpty()){
+            housingEdit.setError("Enter an Amount");
+            housingEdit.requestFocus();
+            return;
+        }
+        if(subscriptions.isEmpty()){
+            subscriptionsEdit.setError("Enter an Amount");
+            subscriptionsEdit.requestFocus();
+            return;
+        }
+        if(other.isEmpty()){
+            otherEdit.setError("Enter an Amount");
+            otherEdit.requestFocus();
+            return;
         }
 
-        Statement statement = new Statement(g,r,t,e,c,u,h,s,o, date);
+        Double g = Double.valueOf(groceries);
+        Double r = Double.valueOf(restaurants);
+        Double t = Double.valueOf(transportation);
+        Double e = Double.valueOf(entertainment);
+        Double c = Double.valueOf(clothing);
+        Double u = Double.valueOf(utilities);
+        Double h = Double.valueOf(housing);
+        Double s = Double.valueOf(subscriptions);
+        Double o = Double.valueOf(other);
+
+        Statement statement = new Statement(g,r,t,e,c,u,h,s,o,d);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userID = user.getUid();
+        String s1 = mDatabase.child(userID).child("statements").push().getKey();
+        mDatabase.child(userID).child("statements").child(s1).setValue(statement);
+
+        startActivity(new Intent(this, Dashboard.class));
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cancel:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, Dashboard.class));
                 break;
             case R.id.submit:
                 Submit();
-                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
     }

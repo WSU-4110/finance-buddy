@@ -7,6 +7,7 @@ public class User {
     public String fullName, age, email;
     public Stack<Statement> statements;
     public boolean bankSetup;
+
     public User() {
     }
 
@@ -15,7 +16,12 @@ public class User {
         this.age = age;
         this.email = email;
         this.bankSetup = bankSetup;
-        this.statements = new Stack<>();
+        this.statements = new Stack<Statement>();
+        Statement statement = new Statement(0, 0, 0, 0, 0, 0, 0, 0, 0, "0/0/00");
+        this.statements.push(statement);
     }
 
+    public String getFullName() {
+        return fullName;
+    }
 }
