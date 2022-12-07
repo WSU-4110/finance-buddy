@@ -9,6 +9,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".ui.home.HomeFragment">
@@ -61,10 +62,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/t_accounts">
 
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:background="#00FFFFFF"
+                android:visibility="visible"
+                app:cornerRadius="10dp"
+                app:strokeColor="#8F1111"
+                app:strokeWidth="5dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="50dp"
+                android:background="#00FFFFFF"
+                android:visibility="visible"
+                app:cornerRadius="10dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="100dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="15dp" />
+                android:paddingRight="15dp" >
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/accounts_text"
@@ -106,7 +135,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_account" />
+            app:layout_constraintTop_toBottomOf="@+id/card_account">
+
+            <TextView
+                android:id="@+id/title_Tran"
+                android:layout_width="169dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
