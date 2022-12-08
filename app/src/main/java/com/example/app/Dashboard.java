@@ -33,6 +33,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private Button inputManually;
     private Button uploadStatement;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
