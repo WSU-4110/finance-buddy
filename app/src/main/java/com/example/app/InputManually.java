@@ -130,7 +130,7 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         String s1 = mDatabase.child(userID).child("statements").push().getKey();
         mDatabase.child(userID).child("statements").child(s1).setValue(statement);
 
-        startActivity(new Intent(this, Dashboard.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override

@@ -12,10 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.app.Dashboard;
 import com.example.app.InputManually;
 import com.example.app.R;
-import com.example.app.RegisterUser;
 import com.example.app.UploadStatement;
 import com.example.app.databinding.FragmentDashboardBinding;
 
@@ -39,7 +37,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         inputManually = (Button) root.findViewById(R.id.input_manually);
         inputManually.setOnClickListener(this);
 
-        uploadStatement = (Button) root.findViewById(R.id.uploadStatement);
+        uploadStatement = (Button) root.findViewById(R.id.setGoals);
         uploadStatement.setOnClickListener(this);
 
         return root;
@@ -57,7 +55,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
             case R.id.input_manually:
                 startActivity(new Intent(getActivity(), InputManually.class));
                 break;
-            case R.id.uploadStatement:
+            case R.id.setGoals:
                 startActivity(new Intent(getActivity(), UploadStatement.class));
                 break;
         }
