@@ -32,7 +32,7 @@ public class UserProfile extends AppCompatActivity {
 
     private double spending, goal;
 
-    private EditText fullNameEditText, emailEditText, ageEditText;
+    private EditText fullNameEditText, emailEditText, ageEditText, goalEditText;
 
     String fullName, age, email;
 
@@ -55,7 +55,7 @@ public class UserProfile extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isNameChanged() || isEmailChanged() || isAgeChanged()) {
+                if(isNameChanged() || isEmailChanged() || isAgeChanged() || isGoalChanged()) {
                     Toast.makeText(UserProfile.this, "Data has been updated", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(UserProfile.this, "Data is the same", Toast.LENGTH_LONG).show();
@@ -77,7 +77,7 @@ public class UserProfile extends AppCompatActivity {
         fullNameEditText = (EditText) findViewById(R.id.fullName);
         emailEditText = (EditText) findViewById(R.id.emailAddress);
         ageEditText = (EditText) findViewById(R.id.age);
-        final TextView goalTextView = (TextView) findViewById(R.id.goal);
+        goalEditText = (EditText) findViewById(R.id.goal);
         final TextView spendingTextView = (TextView) findViewById(R.id.spending);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,11 +89,19 @@ public class UserProfile extends AppCompatActivity {
                     fullName = userProfile.fullName;
                     email = userProfile.email;
                     age = userProfile.age;
+                    spending = userProfile.totalStatements;
+                    goal = userProfile.goal;
+
+                    String spendingString = Double.toString(spending);
+                    String goalString = Double.toString(goal);
 
                     greetingTextView.setText("Welcome, " + fullName + "!");
                     fullNameEditText.setText(fullName);
                     emailEditText.setText(email);
                     ageEditText.setText(age);
+                    spendingTextView.setText("$" + spendingString);
+                    goalEditText.setText("$" + goalString);
+
 
                 }
             }
@@ -127,6 +135,16 @@ public class UserProfile extends AppCompatActivity {
     private boolean isNameChanged() {
         if (!fullName.equals(fullNameEditText.getText().toString())) {
             reference.child(userID).child("fullName").setValue(fullNameEditText.getText().toString());
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isGoalChanged() {
+        double intoDouble = Double.parseDouble(goalEditText.getText().toString());
+        if (goal != intoDouble) {
+            reference.child(userID).child("goal").setValue(intoDouble);
             return true;
         } else {
             return false;

@@ -33,81 +33,84 @@
         android:id="@+id/emailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="4dp"
         android:hint="Email Address"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@id/emailAddressTitle"
-        app:layout_constraintTop_toBottomOf="@id/emailAddressTitle" />
+        app:layout_constraintLeft_toLeftOf="@+id/greeting"
+        app:layout_constraintTop_toBottomOf="@+id/greeting" />
 
     <TextView
         android:id="@+id/fullNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:text="Full Name:"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/greeting"
+        app:layout_constraintLeft_toLeftOf="@+id/greeting"
         app:layout_constraintTop_toBottomOf="@id/emailAddress" />
 
     <EditText
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="16dp"
         android:hint="Name"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@id/greeting"
-        app:layout_constraintTop_toBottomOf="@id/fullNameTitle" />
+        app:layout_constraintLeft_toLeftOf="@+id/greeting"
+        app:layout_constraintTop_toBottomOf="@id/emailAddress" />
 
     <TextView
         android:id="@+id/ageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="160dp"
         android:text="Age:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/fullNameTitle"
-        app:layout_constraintTop_toBottomOf="@id/fullName" />
+        app:layout_constraintTop_toBottomOf="@+id/greeting" />
 
     <EditText
         android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="144dp"
         android:hint="Age"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="@id/fullNameTitle"
-        app:layout_constraintTop_toBottomOf="@id/ageTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/greeting" />
 
     <TextView
         android:id="@+id/goalsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="76dp"
         android:text="Goal:"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@id/ageTitle"
+        app:layout_constraintLeft_toLeftOf="@+id/greeting"
         app:layout_constraintTop_toBottomOf="@id/age" />
 
-    <TextView
+    <EditText
         android:id="@+id/goal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="60dp"
+        android:hint="Enter Goal Here"
         android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@id/ageTitle"
+        app:layout_constraintLeft_toLeftOf="@+id/greeting"
         app:layout_constraintTop_toBottomOf="@id/age" />
 
     <TextView
         android:id="@+id/spendingTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="Spending:"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -118,8 +121,8 @@
         android:id="@+id/spending"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="60dp"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="@id/goalsTitle"
         app:layout_constraintTop_toBottomOf="@id/goal" />
@@ -134,11 +137,11 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.959" />
 
     <Button
         android:id="@+id/updateProfile"
@@ -150,11 +153,11 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.759" />
+        app:layout_constraintVertical_bias="0.855" />
 
     <Button
         android:id="@+id/goBack"
@@ -166,11 +169,12 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.959" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
