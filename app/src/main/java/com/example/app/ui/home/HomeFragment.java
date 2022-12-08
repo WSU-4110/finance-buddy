@@ -12,8 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.app.BankActivity;
 import com.example.app.LoginActivity;
 import com.example.app.R;
+import com.example.app.Transactions;
+import com.example.app.User;
 import com.example.app.api.Client;
 import com.example.app.api.TokenHandler;
 import com.example.app.databinding.FragmentHomeBinding;
@@ -40,6 +43,7 @@ public class HomeFragment extends Fragment {
     private TextView balance;
     private TextView titleT;
     private TextView trans;
+    private TextView charge;
     private Button checking, savings;
     private PlaidApi client = Client.getClient();
     private Response<AccountsGetResponse> responseAcc = null;
@@ -47,6 +51,8 @@ public class HomeFragment extends Fragment {
     private boolean c,d= false;
     private boolean check_b = false;
     private boolean save_b = false;
+    private DecimalFormat df = new DecimalFormat("0.00");
+    public static BankActivity bA = new BankActivity(new User());
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -67,6 +73,7 @@ public class HomeFragment extends Fragment {
         savings = (Button) root.findViewById(R.id.b2);
         titleT = (TextView) root.findViewById(R.id.title_Tran);
         trans = (TextView) root.findViewById(R.id.transactions);
+        charge = (TextView) root.findViewById(R.id.charge);
 
         if(LoginActivity.bankSetup){
             getAccountInfo();
@@ -97,8 +104,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void getSavings() {
-        trans.setText("");
+        trans.setText("No recent transactions");
         titleT.setText("Savings Transactions:");
+        charge.setText("");
     }
 
     private void getCheckings(){
@@ -111,7 +119,7 @@ public class HomeFragment extends Fragment {
 
         //Local date needs higher api version??
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            startDate = LocalDate.parse("2022-01-01");
+            startDate = LocalDate.parse("2022-06-01");
             endDate = LocalDate.parse("2022-12-31");
         }
         // Pull transactions for a date range
@@ -139,12 +147,35 @@ public class HomeFragment extends Fragment {
         //This is Plaid's Transaction class not ours
         List<Transaction> transactions = new ArrayList<Transaction>();
         transactions.addAll(responseTran.body().getTransactions());
+        setupBankActivity(transactions);
 
         String a = "";
+        String b = "";
         for(int i = 0; i < transactions.size(); i++){
             a = a.concat(transactions.get(i).getName() + "\n");
+            b =b.concat("$" + df.format(transactions.get(i).getAmount())  + "\n");
         }
         trans.setText(a);
+        charge.setText(b);
+
+    }
+
+    private void setupBankActivity(List<Transaction> plaidt) {
+
+        for(int i = 0; i < plaidt.size(); i++){
+            Transactions t = null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                try{
+                    t = new Transactions(plaidt.get(i).getAmount(),plaidt.get(i).getAuthorizedDate(),plaidt.get(i).getCategory().toString());
+
+                }catch (NullPointerException e){
+                    Log.e("terror",e.getMessage());
+                }
+
+            }
+            bA.addTransaction(t);
+            Log.e("tt",t.toString());
+        }
     }
 
     public void getAccountInfo(){
@@ -170,7 +201,7 @@ public class HomeFragment extends Fragment {
         String a = "";
         String b = "";
 
-        DecimalFormat df = new DecimalFormat("0.00");
+
 
         for(int i = 0; i < accountsList.size(); i++){
 

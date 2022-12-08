@@ -113,7 +113,6 @@
                 android:layout_height="203dp"
                 android:layout_marginStart="190dp"
                 android:layout_marginTop="10dp"
-                android:text="TextView"
                 android:textAlignment="textEnd"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
@@ -153,11 +152,34 @@
                 android:layout_height="630dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="45dp"
+                android:lineSpacingExtra="10sp"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/charge"
+                android:layout_width="100dp"
+                android:layout_height="630dp"
+                android:layout_marginStart="240dp"
+                android:layout_marginTop="45dp"
+                android:lineSpacingExtra="10sp"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 android:textStyle="normal" />
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="193dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="38dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_transactions" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
