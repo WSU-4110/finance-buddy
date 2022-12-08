@@ -10,7 +10,7 @@ public class DashboardViewModel extends ViewModel {
 
     public DashboardViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard Finance Buddy ");
+        //mText.setValue("This is dashboard Finance Buddy ");
     }
 
     public LiveData<String> getText() {

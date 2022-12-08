@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -21,17 +22,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class Dashboard extends AppCompatActivity implements View.OnClickListener{
 
     //private ActivityMainBinding binding;
     private Button inputManually;
     private Button uploadStatement;
+    private Button reccomend;
 
 
     @Override
@@ -43,6 +48,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
         uploadStatement = (Button) findViewById(R.id.uploadStatement);
         uploadStatement.setOnClickListener(this);
+        reccomend = (Button) findViewById(R.id.rec);
+        reccomend.setOnClickListener(this);
     }
 
 
@@ -55,6 +62,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             case R.id.uploadStatement:
                 startActivity(new Intent(this, RegisterUser.class));
                 break;
+
         }
     }
 }
