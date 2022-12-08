@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -127,8 +128,9 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
-        String s1 = mDatabase.child(userID).child("statements").push().getKey();
-        mDatabase.child(userID).child("statements").child(s1).setValue(statement);
+        //String s1 = mDatabase.child(userID).child("statements").push().getKey();
+        //mDatabase.child(userID).child("statements").child(s1).setValue(statement);
+        mDatabase.child(userID).child("totalStatements").setValue(ServerValue.increment(statement.total()));
 
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -137,7 +139,7 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cancel:
-                startActivity(new Intent(this, Dashboard.class));
+                startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.submit:
                 Submit();

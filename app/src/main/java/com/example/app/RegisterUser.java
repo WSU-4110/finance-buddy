@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Stack;
+
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
 
     private TextView banner, registerUser;
@@ -67,6 +69,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
+        double totalStatements = 0;
+        double goal = 0;
 
         //Validation
         if(fullName.isEmpty()){
@@ -113,7 +117,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
                         if(task.isSuccessful()) {
 
-                            User user = new User(fullName, age, email, false);
+                            User user = new User(fullName, age, email, false, totalStatements, goal);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
