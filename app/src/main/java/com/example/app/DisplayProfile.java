@@ -34,6 +34,7 @@ public class DisplayProfile extends AppCompatActivity {
     //private ActivityMainBinding binding;
     private TextView profileName;
     private TextView profileEmail;
+    private TextView profilePassword;
     private TextView profileGoal;
     private TextView profileSpending;
     private Button updateProfile;
@@ -52,6 +53,7 @@ public class DisplayProfile extends AppCompatActivity {
 
         profileName = (TextView) findViewById(R.id.profileName);
         profileEmail = (TextView) findViewById(R.id.profileEmail);
+        profilePassword = (TextView) findViewById(R.id.profilePassword);
 
 
         profileGoal = (TextView) findViewById(R.id.profileGoal);
