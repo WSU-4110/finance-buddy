@@ -1,5 +1,6 @@
 package com.example.app.ui.notifications;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.app.InputManually;
+import com.example.app.MainActivity;
+import com.example.app.R;
+import com.example.app.UploadStatement;
+import com.example.app.UserProfile;
 import com.example.app.databinding.FragmentNotificationsBinding;
+import com.example.app.notifications.MyFirebaseMessagingService;
 
 public class NotificationsFragment extends Fragment {
 
@@ -33,5 +40,11 @@ public class NotificationsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    // the messages are not being received?
+    public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MyFirebaseMessagingService.class));
+
     }
 }
