@@ -128,8 +128,8 @@ public class InputManually extends AppCompatActivity implements View.OnClickList
         mDatabase = FirebaseDatabase.getInstance().getReference("Users");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
-        //String s1 = mDatabase.child(userID).child("statements").push().getKey();
-        //mDatabase.child(userID).child("statements").child(s1).setValue(statement);
+        String s1 = mDatabase.child(userID).child("statements").push().getKey();
+        mDatabase.child(userID).child("statements").child(s1).setValue(statement);
         mDatabase.child(userID).child("totalStatements").setValue(ServerValue.increment(statement.total()));
 
         startActivity(new Intent(this, MainActivity.class));
