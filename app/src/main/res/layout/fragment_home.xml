@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".ui.home.HomeFragment">
@@ -61,10 +61,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/t_accounts">
 
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:background="#00FFFFFF"
+                android:visibility="visible"
+                app:cornerRadius="10dp"
+                app:strokeColor="#8F1111"
+                app:strokeWidth="5dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="50dp"
+                android:background="#00FFFFFF"
+                android:visibility="visible"
+                app:cornerRadius="10dp"
+                app:strokeColor="#000000"
+                app:strokeWidth="100dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="15dp" />
+                android:paddingRight="15dp">
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/accounts_text"
@@ -95,7 +123,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_transactions"
             android:layout_width="350dp"
-            android:layout_height="500dp"
+            android:layout_height="700dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="96dp"
             android:layout_marginEnd="30dp"
@@ -104,7 +132,53 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_account" />
+            app:layout_constraintTop_toBottomOf="@+id/card_account">
+
+            <TextView
+                android:id="@+id/title_Tran"
+                android:layout_width="315dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/transactions"
+                android:layout_width="325dp"
+                android:layout_height="630dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp"
+                android:lineSpacingExtra="10sp"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/charge"
+                android:layout_width="100dp"
+                android:layout_height="630dp"
+                android:layout_marginStart="240dp"
+                android:layout_marginTop="45dp"
+                android:lineSpacingExtra="10sp"
+                android:textAlignment="textEnd"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="193dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="38dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_transactions" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

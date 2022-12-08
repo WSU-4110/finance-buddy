@@ -1,17 +1,18 @@
 package com.example.app;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Transactions {
     private double amount;
     private String type;
-    private Date date;
+    private LocalDate date;
 
-    public Transactions(double amt, Date dt){
+    public Transactions(double amt, LocalDate dt){
         amount = amt;
         date = dt;
     }
-    public Transactions(double amt, Date dt, String tp){
+    public Transactions(double amt, LocalDate dt, String tp){
         amount = amt;
         date = dt;
         type = tp;
@@ -28,7 +29,7 @@ public class Transactions {
     public double getAmount(){
         return amount;
     }
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
     @Override

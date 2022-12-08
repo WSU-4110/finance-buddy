@@ -10,6 +10,7 @@ public class BankActivity {
 
     public BankActivity(User u){
         u = user;
+        activity = new ArrayList<>();
     }
     public int getSize(){
         return size;
