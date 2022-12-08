@@ -8,29 +8,26 @@
 
     <Button
         android:id="@+id/input_manually"
-        android:layout_width="170dp"
+        android:layout_width="match_parent"
         android:layout_height="141dp"
         android:layout_marginBottom="44dp"
         android:text="Input Manually"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/banner2"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/banner2"
-        android:layout_width="355dp"
-        android:layout_height="163dp"
+        android:layout_width="326dp"
+        android:layout_height="47dp"
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-black"
         android:text="Finance Buddy"
         android:textAlignment="center"
-        android:textSize="60sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/input_manually"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -45,23 +42,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/uploadStatement"
-        android:layout_width="170dp"
-        android:layout_height="141dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="16dp"
-        android:text="Upload Statement"
-        android:translationY="-238dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner2" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="373dp"
-        android:text="OR"
         android:translationX="5dp"
         android:translationY="-120dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rec_text2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
@@ -83,32 +69,32 @@
         android:id="@+id/rec"
         android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="296dp"
         android:text="Get Reccomendations to Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_manually" />
 
     <TextView
         android:id="@+id/rec_text"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="85dp"
+        android:layout_marginBottom="80dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rec"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/rec_text2"
         android:layout_width="300dp"
         android:layout_height="90dp"
+        android:layout_marginTop="152dp"
         android:layout_marginEnd="56dp"
-        android:layout_marginBottom="75dp"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rec" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,7 +29,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
 
     private FragmentDashboardBinding binding;
     private Button inputManually;
-    private Button uploadStatement;
     private Button reccomend;
     private TextView reccomendations;
     private TextView reccomendations2;
@@ -50,8 +49,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         inputManually = (Button) root.findViewById(R.id.input_manually);
         inputManually.setOnClickListener(this);
 
-        uploadStatement = (Button) root.findViewById(R.id.uploadStatement);
-        uploadStatement.setOnClickListener(this);
 
         reccomend = (Button) root.findViewById(R.id.rec);
         reccomend.setOnClickListener(this);
@@ -73,9 +70,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()) {
             case R.id.input_manually:
                 startActivity(new Intent(getActivity(), InputManually.class));
-                break;
-            case R.id.uploadStatement:
-                startActivity(new Intent(getActivity(), UploadStatement.class));
                 break;
             case R.id.rec:
 

@@ -35,7 +35,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     //private ActivityMainBinding binding;
     private Button inputManually;
-    private Button uploadStatement;
+
     private Button reccomend;
 
 
@@ -46,8 +46,6 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         inputManually = (Button) findViewById(R.id.input_manually);
         inputManually.setOnClickListener(this);
 
-        uploadStatement = (Button) findViewById(R.id.uploadStatement);
-        uploadStatement.setOnClickListener(this);
         reccomend = (Button) findViewById(R.id.rec);
         reccomend.setOnClickListener(this);
     }
@@ -59,9 +57,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             case R.id.input_manually:
                 startActivity(new Intent(this, InputManually.class));
                 break;
-            case R.id.uploadStatement:
-                startActivity(new Intent(this, RegisterUser.class));
-                break;
+
 
         }
     }
