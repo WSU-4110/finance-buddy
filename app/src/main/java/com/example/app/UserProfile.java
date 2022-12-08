@@ -27,7 +27,7 @@ public class UserProfile extends AppCompatActivity {
 
     private String userID;
 
-    private Button logout;
+    private Button logout, goBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,18 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         logout = (Button) findViewById(R.id.signOut);
+        goBack = (Button) findViewById(R.id.goBack);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(UserProfile.this, LoginActivity.class));
+            }
+        });
+        goBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 startActivity(new Intent(UserProfile.this, MainActivity.class));
             }
         });
