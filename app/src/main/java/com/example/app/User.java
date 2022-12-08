@@ -5,7 +5,6 @@ import java.io.*;
 public class User {
 
     public String fullName, age, email;
-    public Stack<Statement> statements;
     public double totalStatements, goal;
     public boolean bankSetup;
 
@@ -17,9 +16,6 @@ public class User {
         this.age = age;
         this.email = email;
         this.bankSetup = bankSetup;
-        this.statements = new Stack<Statement>();
-        Statement statement = new Statement(0, 0, 0, 0, 0, 0, 0, 0, 0, "0/0/00");
-        this.statements.push(statement);
         this.totalStatements = totalStatements;
         this.goal = goal;
     }
