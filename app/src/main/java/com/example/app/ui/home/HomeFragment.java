@@ -77,18 +77,21 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                if(!check_b)
+                if(!check_b){
                     getCheckings();
-                check_b = true;
-                save_b = false;
+                    check_b = true;
+                    save_b = false;
+                }
+
             }});
         savings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(!save_b)
+                if(!save_b) {
                     getSavings();
-                save_b = true;
-                check_b = false;
+                    save_b = true;
+                    check_b = false;
+                }
             }});
         return root;
     }

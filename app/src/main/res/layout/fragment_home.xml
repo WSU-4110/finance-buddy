@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    >
+    android:fillViewport="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,7 +90,7 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="15dp" >
+                android:paddingRight="15dp">
 
             </RelativeLayout>
 
