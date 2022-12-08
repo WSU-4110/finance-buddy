@@ -21,53 +21,48 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app.api.TokenHandler;
+import com.example.app.notifications.TokenNotification;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class DisplayProfile extends AppCompatActivity {
+
+public class DisplayProfile extends AppCompatActivity implements View.OnClickListener{
     //private ActivityMainBinding binding;
-    private TextView profileName;
-    private TextView profileEmail;
-    private TextView profilePassword;
-    private TextView profileGoal;
-    private TextView profileSpending;
-    private Button updateProfile;
-    private FirebaseUser user;
-    private DatabaseReference reference;
-    private String userID;
+
+    private Button userProfile, otherProfile;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_profile);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
 
-        profileName = (TextView) findViewById(R.id.profileName);
-        profileEmail = (TextView) findViewById(R.id.profileEmail);
-        profilePassword = (TextView) findViewById(R.id.profilePassword);
+        userProfile = (Button) findViewById(R.id.userProfile);
+        userProfile.setOnClickListener(this);
 
-
-        profileGoal = (TextView) findViewById(R.id.profileGoal);
-        profileSpending = (TextView) findViewById(R.id.profileSpending);
-
-        updateProfile = (Button) findViewById(R.id.updateProfileButton);
-
-
+        otherProfile = (Button) findViewById(R.id.otherProfile);
+        otherProfile.setOnClickListener(this);
 
 
 
     }
-
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.userProfile:
+                startActivity(new Intent(this, UserProfile.class));
+                break;
+            case R.id.otherProfile:
+                startActivity(new Intent(this,  MainActivity.class));
+                break;
+        }
+    }
+    
 
 
 }
