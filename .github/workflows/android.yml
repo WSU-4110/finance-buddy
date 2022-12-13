@@ -1,10 +1,10 @@
-name: android CI
+name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "aidan_unittest" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "aidan_unittest" ]
 
 jobs:
   build:
@@ -23,4 +23,17 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build --stacktrace
+      run: ./gradlew build
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: cd App && ./gradlew cAT 
+      - name: Upload test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: instrumentation-test-report.html
+          path: App/app/build/reports/androidTests/connected/index.html
