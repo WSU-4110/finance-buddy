@@ -114,7 +114,7 @@ class BankActivityTest {
 
         //Test
         String result = TestBank.getAllTransactionsString();
-        String expected = "-34.98,2022-11-15,membership  -38.33,2022-11-15,travel  ";
+        String expected = "-34.98,2022-12-12,membership  -38.33,2022-11-15,travel  ";
         assertEquals(expected,result);
     }
 }
