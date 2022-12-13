@@ -71,7 +71,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         // created an icon to display notification using identifier "notification
-                        .setSmallIcon(R.drawable.ic_stat_notification)
+                      //  .setSmallIcon(R.drawable.ic_stat_notification)
                         // the title of the notification type
                         .setContentTitle("Foreground notification")
                         .setContentText(messageBody)

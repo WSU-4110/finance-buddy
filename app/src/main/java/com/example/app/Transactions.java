@@ -34,7 +34,6 @@ public class Transactions {
     }
     @Override
     public String toString() {
-
         return "Date: " + date + " " + "Type: " + type + "Amount: " + amount;
     }
 }
